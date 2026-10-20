@@ -1,10 +1,5 @@
 # 基于有界局部更新的模态水平波数因果序贯跟踪
 
-本仓库是 JASA Express Letters 论文的代码与数据：
-
-> **Causal sequential tracking of modal horizontal wavenumbers via bounded local updates**
-> 刘令南，刘发军，王鹏宇（中国海洋大学）
-
 一次全局 Diff-FRI（可微有限新息率）初始化，随后是由声速剖面变化驱动的有界局部更新（CSMT）。
 在 40 m 合成波导中，全帧波数误差相对逐帧独立估计降低 **3.09 倍**；在 SWellEx-96 实验 S5
 数据上，单次局部更新耗时 **0.108 s**，而全局重估需要 **102.58 s**。设计的真正边界是
