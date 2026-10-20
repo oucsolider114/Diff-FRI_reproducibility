@@ -1,20 +1,39 @@
 cff-version: 1.2.0
 message: "If you use this code or these data, please cite the article below."
 title: "Causal sequential tracking of modal horizontal wavenumbers via bounded local updates"
+abstract: >-
+  Reference implementation and data package for a causal sequential tracker of modal
+  horizontal wavenumbers. One differentiable finite-rate-of-innovation initialization is
+  followed by bounded, sound-speed-conditioned local updates. In a 40 m synthetic waveguide
+  the tracker lowers all-frame wavenumber error by a factor of 3.09 relative to framewise
+  estimation; on SWellEx-96 Event S5 a local update costs 0.108 s against 102.58 s for a
+  global re-estimate. The operating limit is mode-order association, not residual fit.
 authors:
   - family-names: Liu
     given-names: Lingnan
+    affiliation: Ocean University of China
   - family-names: Liu
     given-names: Fajun
+    affiliation: Ocean University of China
   - family-names: Wang
     given-names: Pengyu
     affiliation: Ocean University of China
-  - name: "Journal of the Acoustical Society of America Express Letters"
 type: software
 license: MIT
-version: 1.0.0
+version: 1.0.1
 date-released: "2026-10-20"
+repository-code: "https://github.com/oucsolider114/Diff-FRI_reproducibility"
+url: "https://github.com/oucsolider114/Diff-FRI_reproducibility"
+keywords:
+  - modal horizontal wavenumber
+  - sequential tracking
+  - shallow water acoustics
+  - vertical line array
+  - finite-rate-of-innovation
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.TBD"
-    description: "Zenodo archive DOI (to be minted before submission)"
+    value: "10.5281/zenodo.23500771"
+    description: "Zenodo archive of version 1.0.0"
+  - type: doi
+    value: "10.5281/zenodo.23500770"
+    description: "Zenodo concept DOI, resolving to the latest version"
