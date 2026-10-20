@@ -1,0 +1,37 @@
+{
+  "experiment": "synthetic_evolving_waveguide",
+  "reference": "main text Sec. 3.1, Fig. 2",
+  "water_column": {
+    "depth_m": 40.0,
+    "frequency_hz": 300.0,
+    "receiver_depths_m": {"start": 1.0, "end": 40.0, "count": 40}
+  },
+  "sequence": {
+    "frames": 21,
+    "frame_interval_s": 60.0,
+    "duration_s": 1200.0,
+    "snapshots_per_frame": 20
+  },
+  "realizations": {
+    "paired": 20,
+    "snr_db": 10.0,
+    "seeds": "paired coefficient and noise seeds, fixed before the reported comparisons"
+  },
+  "estimator": {
+    "K_retained": 3,
+    "grid_points": 512,
+    "beam_branch_factor": 6,
+    "beam_width": 24,
+    "candidates_retained": 5,
+    "adam_steps_coefficients_only": 100,
+    "adam_steps_joint": 400,
+    "beta": 0.5,
+    "delta0": 0.0012,
+    "delta_min": 0.0008,
+    "delta_max": 0.004,
+    "lambda_k": 1.5,
+    "lambda_ssp": 0.15,
+    "d_min": 0.0035
+  },
+  "success_criterion": {"max_mode_error_rad_m": 0.0015}
+}

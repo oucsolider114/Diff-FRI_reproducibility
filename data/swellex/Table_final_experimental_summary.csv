@@ -1,0 +1,21 @@
+Metric,Value
+Stable approach frames,2-30
+Stable approach time (min),41.25-55.25
+Transition/stress frames,31-38
+Stable recede frames,39-69
+Stable recede time (min),59.75-74.75
+Representative frames,"2,20,30,40,50,69"
+Residual ratio minimum,0.8091277823864175
+Residual ratio median,1.030867092099712
+Residual ratio maximum,1.3815420525335396
+Frames CSMT residual <= NNFR,3/6
+Frames residual ratio <= 1.25,5/6
+Frames residual ratio <= 1.50,6/6
+CSMT runtime mean (s),0.10780507758600238
+CSMT runtime median (s),0.10839585000030638
+CSMT runtime p95 (s),0.11772738999934518
+CSMT runtime maximum (s),0.14507429999866872
+All online updates < 30 s,True
+Representative NNFR runtime median (s),102.57773380000071
+Representative NNFR runtime min (s),100.88897469999938
+Representative NNFR runtime max (s),479.17601209999884

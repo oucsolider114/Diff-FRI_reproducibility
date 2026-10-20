@@ -1,0 +1,19 @@
+{
+  "experiment": "update_stage_perturbations",
+  "reference": "main text Sec. 3.2; Supplementary Secs. S16, S23, S25",
+  "design": {
+    "principle": "one factor at a time, forward field fixed, frame 0 initialized from the reference wavenumbers",
+    "realizations_per_condition": 20,
+    "frames_per_realization": 21
+  },
+  "sweeps": {
+    "snr_db": [-5, 0, 5, 10, 15],
+    "snapshots_per_frame": [5, 10, 20, 40],
+    "inverse_ssp_depth_shift_m": [-2, -1, 0, 1, 2],
+    "inverse_ssp_uniform_offset_m_s": [-2, -1, 0, 1, 2],
+    "inverse_ssp_contrast_scale_m_s": [-2, -1, 0, 1, 2]
+  },
+  "nominal": {"snr_db": 10, "snapshots_per_frame": 20, "depth_shift_m": 0},
+  "success_criterion": {"max_mode_error_rad_m": 0.0015},
+  "note": "The depth-shift sweep belongs to Supplementary Sec. S23; the offset and contrast sweeps belong to Sec. S25. The two were run as separate audits."
+}

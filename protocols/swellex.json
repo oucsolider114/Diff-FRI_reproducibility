@@ -1,0 +1,20 @@
+{
+  "experiment": "swellex96_s5",
+  "reference": "main text Secs. 3.3-3.4, Fig. 3",
+  "record": {
+    "event": "SWellEx-96 Event S5",
+    "frequency_hz": 49.0,
+    "array": {"elements": 21, "type": "vertical line array"},
+    "windows": {"count": 70, "duration_s": 30.0, "snapshots_per_window": 20},
+    "segments": {"first": [2, 30], "second": [39, 69], "gap": [31, 38]}
+  },
+  "reference_profiles": {
+    "i9606": {"modes": 13, "offset": "3 h 35 min after the event"},
+    "i9601": {"modes": 13, "offset": "8 h 05 min before the event"},
+    "i9604": {"modes": 13, "offset": "1 h 01 min before the event"},
+    "contemporaneous": false
+  },
+  "primary_analysis": {"profile": "i9606", "updates": 67, "initialization_frame": 2},
+  "cadence_audit": {"intervals_frames": [0, 2, 5, 10, 20], "note": "0 = uninterrupted"},
+  "success_criterion": {"max_mode_error_rad_m": 0.0015}
+}

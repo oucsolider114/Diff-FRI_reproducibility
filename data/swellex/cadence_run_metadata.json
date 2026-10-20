@@ -1,0 +1,32 @@
+{
+  "trigger": "original frame index only",
+  "supplied_ssp": "i9606 from audited P1_const_base.env",
+  "reference": "13 KRAKEN roots; i9606",
+  "scored_frames": "3--69",
+  "initial_assignment": [
+    1,
+    2,
+    5
+  ],
+  "parameters": {
+    "beta_pred": 0.5,
+    "delta0_rad_m": 0.00020021538461538458,
+    "delta_min_rad_m": 0.00013347692307692308,
+    "delta_max_rad_m": 0.0006673846153846154,
+    "lambda_k": 1.5,
+    "lambda_ssp": 0.15,
+    "minimum_mode_separation_rad_m": 0.0005839615384615384,
+    "local_grid_points": 9,
+    "local_coordinate_sweeps": 2,
+    "enable_quadratic_subgrid": true,
+    "search_lower_fraction": 0.95,
+    "search_upper_fraction": 0.999999
+  },
+  "Full_config": {
+    "grid_size": 512,
+    "top_n_hypotheses": 5,
+    "beam_branch_factor": 6,
+    "beam_width": 24,
+    "grid_min_separation_rad_m": 0.00066738
+  }
+}

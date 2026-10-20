@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or these data, please cite the article below."
+title: "Causal sequential tracking of modal horizontal wavenumbers via bounded local updates"
+authors:
+  - family-names: Liu
+    given-names: Lingnan
+  - family-names: Liu
+    given-names: Fajun
+  - family-names: Wang
+    given-names: Pengyu
+    affiliation: Ocean University of China
+  - name: "Journal of the Acoustical Society of America Express Letters"
+type: software
+license: MIT
+version: 1.0.0
+date-released: "2026-10-20"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.TBD"
+    description: "Zenodo archive DOI (to be minted before submission)"

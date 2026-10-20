@@ -1,0 +1,65 @@
+{
+  "protocol": "Frozen forward observations; inverse input SSP only",
+  "conditions": [
+    [
+      "nominal",
+      0.0
+    ],
+    [
+      "offset",
+      -2.0
+    ],
+    [
+      "offset",
+      -1.0
+    ],
+    [
+      "offset",
+      1.0
+    ],
+    [
+      "offset",
+      2.0
+    ],
+    [
+      "contrast",
+      -2.0
+    ],
+    [
+      "contrast",
+      -1.0
+    ],
+    [
+      "contrast",
+      1.0
+    ],
+    [
+      "contrast",
+      2.0
+    ]
+  ],
+  "confidence_intervals": "20000 repeat-level paired-bootstrap draws; bootstrap mean of repeat RMSE, NOT pooled RMSE",
+  "seed_namespace": "csmt_robustness_extension_v1_20261018",
+  "reference_init": "frame-0 model roots, same as experiment 19",
+  "repeats": 20,
+  "frames": 21,
+  "snr_db": 10,
+  "snapshots": 20,
+  "mode_count": 3,
+  "frequency_hz": 300,
+  "water_depth_m": 40,
+  "success_rule": "max(abs(k_hat-truth)) <= 0.0015 rad/m",
+  "perturbation_model": "offset: + delta m/s all depths; contrast: + delta*(c-mid)/half, top +delta bottom -delta m/s",
+  "forward_basis_unchanged": true,
+  "inverse_params_not_retuned": true,
+  "initialization_failure_not_tested": true,
+  "independent_environments_not_tested": true,
+  "input_sha256": {
+    "19_csmt_robustness_extension.py": "eaa3880c6bc9a34b9b538dbf5182366675366612ce0e12176048dd5b7e6e0d40",
+    "csmt_v2_independent_holdout.json": "5607003f10088ebfd52c052bd13573d6d31c9e011f8fa480a692df693a2db454",
+    "kraken_dynamic_truth.npz": "95f3a821b78ce6cf32956c12be8ab091e3ee21c037d10913f646821c917fce1f"
+  },
+  "original_nominal_rmse": 0.00023311709531809724,
+  "original_nominal_success": 1.0,
+  "elapsed_seconds": 40.82403314600015
+}
