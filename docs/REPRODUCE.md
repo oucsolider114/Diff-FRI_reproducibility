@@ -37,11 +37,12 @@ Three quantities in the article require inputs that are not redistributed here:
 | Quantity | Requires |
 |---|---|
 | raw KRAKEN reference roots, before scoring | the forward model (not redistributed) |
-| trial matrices for the invariance check (Supplementary Sec. S12) | the complex arrays (`.npz`, Zenodo) |
-| a full re-run of the estimator rather than a recomputation | the pressure arrays (`.npz`, Zenodo) |
+| trial matrices for the invariance check (Supplementary Sec. S12) | the complex arrays (regenerable from `data/arrays/Y_frames.npz`) |
+| a full re-run of the estimator rather than a recomputation | `data/arrays/Y_frames.npz` (included, 456 KB) |
 
 The per-frame exports in `data/` already carry the scored quantities, so every number
-printed in the article is recomputable from them; what needs the arrays is a re-run.
+printed in the article is recomputable from them. Because the pressure array is also
+included, `experiments/rerun_cadence_from_arrays.py` can additionally re-run the optimizer.
 
 `data/synthetic/repeat_summary.csv` contains the 20 pairs, so the bootstrap interval *is*
 regenerable from the CSV alone; see the optional snippet below.

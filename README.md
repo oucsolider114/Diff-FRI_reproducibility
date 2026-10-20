@@ -53,8 +53,10 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 |---|---|---|
 | SWellEx-96 原始波形 | 567 MB，已公开存档 | <https://swellex96.ucsd.edu/s5.htm> |
 | SAVEX15 环境数据 | 由 SEANOE 分发 | doi:10.17882/72285 |
-| `.npz` 中间数组 | 体积大，可由 CSV 重新生成 | Zenodo 存档（见 `CITATION.cff`） |
 | KRAKEN 可执行文件 | 第三方软件，不再分发 | 向该模型作者获取 |
+
+压力场数组已随仓库提供（`data/arrays/Y_frames.npz`，456 KB），因此
+`experiments/rerun_cadence_from_arrays.py` 可以在本仓库内直接重跑优化器，而不只是复算。
 
 ## 数据许可与第三方条款
 

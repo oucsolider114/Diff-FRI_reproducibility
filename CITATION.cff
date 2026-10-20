@@ -8,6 +8,8 @@ abstract: >-
   the tracker lowers all-frame wavenumber error by a factor of 3.09 relative to framewise
   estimation; on SWellEx-96 Event S5 a local update costs 0.108 s against 102.58 s for a
   global re-estimate. The operating limit is mode-order association, not residual fit.
+  Liu Lingnan and Liu Fajun contributed equally to this work; Pengyu Wang is the
+  corresponding author (wangpengyu@ouc.edu.cn).
 authors:
   - family-names: Liu
     given-names: Lingnan
