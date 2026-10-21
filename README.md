@@ -1,7 +1,7 @@
 # 基于有界局部更新的模态水平波数因果序贯跟踪
 
-**版本 v1.1.1（2026-10-21）** — 在 v1.0.1 基础上补入 SAVEX15、VLA 几何、初始化消融与预测器 holdout
-四组数据，使论文正文 3.1–3.4 与补充材料 S6、S10、S18、S20 全部可从本仓库复现。
+**版本 v1.1.2（2026-10-21）** — 在 v1.0.1 基础上补入 SAVEX15、VLA 几何、初始化消融与预测器 holdout
+四组数据。归档可支持从派生数据复算论文报告的主要图表与汇总统计；部分实验级重跑需要外部输入与原始计算环境，三级复现范围见 `docs/REPRODUCE.md`。
 
 一次全局 Diff-FRI（可微有限新息率）初始化，随后是由声速剖面变化驱动的有界局部更新（CSMT）。
 在 40 m 合成波导中，全帧波数误差相对逐帧独立估计降低 **3.09 倍**；在 SWellEx-96 实验 S5
@@ -60,7 +60,7 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 数组由 `scripts/NN_FRI_SAVEX15_Physics_Repair_v1.py` 生成，协议见 `scripts/StageB_PREDECLARED_PROTOCOL.md`。
 
 **注意**：SAVEX15 的原始温盐观测由 SEANOE 分发（doi:10.17882/72285），本仓库不重复分发；
-这里提供的是由该观测构造的 SSP 与前向场，足以复现 Sec. S10 的全部数字。
+这里提供的是由该观测构造的 SSP 与前向场，足以复算 Sec. S10 的全部数字。
 
 ### 2. `data/vla_geometry/`（对应 Supplementary Sec. S20）
 
@@ -135,6 +135,12 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 - 新增 `data/predictor_holdout/`（0.23 MB）：Sec. S18 的独立 holdout 与 β 重算记录
 - 更新 `MANIFEST.sha256`、`README`、`README_EN`、`CITATION.cff`
 - 至此论文原本标注“realization-level records available on request”的两处数据已全部包含在本仓库内
+
+## v1.1.1 → v1.1.2 变更摘要
+
+- 通讯作者邮箱（`wangpengyu@ouc.edu.cn`）保留，与 Zenodo 记录页和论文首页保持一致。
+- `README` 中英文的复现声明收窄为两级表述（派生数据复算 / 实验级重跑），与 `docs/REPRODUCE.md` 的 Tier B/C 一致。
+- `CITATION.cff` 的引用提示改为“引用本归档；论文发表后可另行引用”，不再把软件 DOI 表述为期刊文章 DOI。
 
 ## v1.1.0 → v1.1.1 变更摘要
 

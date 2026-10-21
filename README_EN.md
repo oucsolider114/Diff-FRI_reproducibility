@@ -2,9 +2,11 @@
 
 Code and data for the JASA Express Letters article
 
-**Version v1.1.1 (2026-10-21)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
-and predictor-holdout datasets, so that Secs. S6, S10, S18, and S20 are reproducible from
-the repository alone.
+**Version v1.1.2 (2026-10-21)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
+and predictor-holdout datasets. The archive supports recomputation of the main reported
+figures and summary statistics from derived data. Selected experiment-level reruns require
+external inputs and the original computing environment; see `docs/REPRODUCE.md` for the
+three reproduction tiers.
 
 > **Causal sequential tracking of modal horizontal wavenumbers via bounded local updates**
 > Lingnan Liu, Fajun Liu, and Pengyu Wang (Ocean University of China)
@@ -75,6 +77,12 @@ attempting a cold-start rerun. The archived NPZ/CSV are the authoritative output
 | SAVEX15 forward-field KRAKEN output (`.prt`/`.mod`/`.env`) | ~42 MB of intermediates, regenerable by `NN_FRI_SAVEX15_Physics_Repair_v1.py` | this repository ships the resulting `.npz` arrays |
 | KRAKEN executables | third-party, not redistributable | obtain from the authors of the model |
 | Full three-CTD estimate arrays | restricted by the source archive | on request from the corresponding author |
+
+## v1.1.1 -> v1.1.2
+
+- The corresponding-author e-mail (`wangpengyu@ouc.edu.cn`) is kept, consistent with the Zenodo record page and the article's first page.
+- Front-matter reproduction claim narrowed to a two-tier statement (recomputation from derived data vs. experiment-level rerun), consistent with Tier B/C in `docs/REPRODUCE.md`.
+- `CITATION.cff` message now asks readers to cite this archived release, noting that the journal article will be citable once published; the software DOI is no longer presented as an article DOI.
 
 ## v1.1.0 -> v1.1.1
 
