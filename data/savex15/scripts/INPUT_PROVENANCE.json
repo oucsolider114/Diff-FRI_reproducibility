@@ -1,0 +1,11 @@
+{
+  "source_archive": "NN_FRI_SACLANT_SAVEX_recovered_v2.zip",
+  "source_archive_sha256": "87503324f7352bf4d15d2c697f1ad79e2c1fbd83c0c4611522462dfbaf2ff0a0",
+  "data_classification": "user-recovered historical QC derivatives (T/SP/time/thermistors); NOT raw NetCDF",
+  "sha256": {
+    "profile_summary": "186626eb75541e26366c8324e82950d06dcfacad9fa68cd8e71d513f630fb096",
+    "profile_levels": "35e7d29070b02a0783b22f881f00995645eb3b3247acaba3cb67d144251776c4",
+    "mooring": "0840fee69825ade16f9951dfbd22a68b5b292085b27b769e4e6ce85a453b50a5"
+  },
+  "notes": "original historical Plan-A outputs and synthetic results NOT included or substituted"
+}

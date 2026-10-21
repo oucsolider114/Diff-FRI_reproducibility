@@ -64,7 +64,13 @@ def build():
     ax.set_xlabel(r"Framewise Full RMSE ($\times10^{-4}$ rad m$^{-1}$)", labelpad=1.5)
     ax.set_ylabel(r"CSMT RMSE ($\times10^{-4}$ rad m$^{-1}$)", labelpad=1.5)
     ax.set_title("(b) 20 paired realizations", fontsize=7.5, loc="left", pad=2)
-    ax.text(0.03, 0.96, f"mean ratio {x.mean()/y.mean():.2f}\n95% CI [2.59, 3.69]",
+    rng = np.random.default_rng(0)
+    bs = np.empty(20000)
+    for i in range(20000):
+        idx = rng.integers(0, x.size, x.size)
+        bs[i] = x[idx].mean() / y[idx].mean()
+    lo, hi = np.percentile(bs, [2.5, 97.5])
+    ax.text(0.03, 0.96, f"mean ratio {x.mean()/y.mean():.2f}\n95% CI [{lo:.2f}, {hi:.2f}]",
             transform=ax.transAxes, ha="left", va="top", fontsize=6.1, linespacing=1.25)
 
     fig.tight_layout(pad=0.4)

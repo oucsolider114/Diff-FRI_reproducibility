@@ -1,0 +1,10 @@
+﻿variant_minus_baseline,metric,mean_paired_difference,bootstrap_ci_low,bootstrap_ci_high,trial_pairs,interpretation_sign
+short_mid_20 - full_40,static_initializer_rmse_rad_m,0.014773888084177927,0.011182327133560934,0.018337727618370363,20,positive=worse
+short_mid_20 - full_40,csmt_tracking_only_mean_rmse_rad_m,0.012466616305508703,0.008309971445156779,0.016609706209290222,20,positive=worse
+short_mid_20 - full_40,csmt_tracking_only_success_proportion,-0.945,-0.9749999999999999,-0.9149999999999998,20,positive=worse for RMSE; positive=better for success
+short_mid_14 - full_40,static_initializer_rmse_rad_m,0.027355884507456657,0.026914316689599673,0.027810695733606564,20,positive=worse
+short_mid_14 - full_40,csmt_tracking_only_mean_rmse_rad_m,0.024076535526401197,0.023782379567688323,0.02439398716041321,20,positive=worse
+short_mid_14 - full_40,csmt_tracking_only_success_proportion,-0.9949999999999999,-1.0,-0.9875,20,positive=worse for RMSE; positive=better for success
+sparse_fullspan_20 - full_40,static_initializer_rmse_rad_m,-5.271183042498589e-05,-0.0001837311174686921,5.705371085033111e-05,20,positive=worse
+sparse_fullspan_20 - full_40,csmt_tracking_only_mean_rmse_rad_m,6.80125681586424e-05,5.6935474243788374e-05,7.917216003795458e-05,20,positive=worse
+sparse_fullspan_20 - full_40,csmt_tracking_only_success_proportion,-0.0025000000000000022,-0.007500000000000007,0.0,20,positive=worse for RMSE; positive=better for success

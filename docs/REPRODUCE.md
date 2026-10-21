@@ -30,6 +30,26 @@ Expected console output:
 | Fig. 3(a) | the running mean stays within 0.04–0.18 and shows no trend |
 | Fig. 3(b) | the two curves are separated by roughly three orders of magnitude |
 
+## Reproduction tiers
+
+Not every reported result is reachable at the same level. The three tiers are:
+
+| Tier | What runs | Which results |
+|---|---|---|
+| **A. Table and figure recomputation** | Python from the archived CSV only | Fig. 1–3, Table I, every summary table, the bootstrap interval |
+| **B. Estimator re-run on archived pressures** | needs `data/arrays/Y_frames.npz` **and** the original `SWellEx96_S5_CSMT/` tree; not self-contained | the cadence audit via `experiments/rerun_cadence_from_arrays.py` — **fails in a bare checkout** |
+| **C. Cold-start experiment re-run** | needs the original project layout, the KRAKEN binary, and the raw external inputs; **not** self-contained in this archive | Sec. S10 StageA/StageB, Sec. S20 geometry sweep |
+
+Tier A is verified in a clean checkout. Tier B has been exercised on the development machine
+but depends on modules that remain in `src/mode_fri/` and on the original `SWellEx96_S5_CSMT/`
+tree (`processed/Y_frames.npz`, `results/49hz_kraken_reference_stage2/*.env`); it does not run
+from a bare checkout. Tier C is documented by the archived
+arrays and per-realization CSVs, which are the authoritative outputs; the scripts under
+`data/savex15/scripts/` and `data/vla_geometry/scripts/` are retained for provenance and expect
+the original project layout (`--project-root`, `--stagea-root`, and the cold-start caches).
+They are **not** guaranteed to run standalone. If you need Tier C, treat the archived NPZ/CSV
+as the result and the scripts as documentation of how it was produced.
+
 ## Why some numbers cannot be regenerated from `data/`
 
 Three quantities in the article require inputs that are not redistributed here:
@@ -41,8 +61,10 @@ Three quantities in the article require inputs that are not redistributed here:
 | a full re-run of the estimator rather than a recomputation | `data/arrays/Y_frames.npz` (included, 456 KB) |
 
 The per-frame exports in `data/` already carry the scored quantities, so every number
-printed in the article is recomputable from them. Because the pressure array is also
-included, `experiments/rerun_cadence_from_arrays.py` can additionally re-run the optimizer.
+printed in the article is recomputable from them. The pressure array in `data/arrays/` is
+included as well, but `experiments/rerun_cadence_from_arrays.py` also needs the original
+`SWellEx96_S5_CSMT/` tree and `dynamic_local_basis_coupling_suite`; it does not run from a
+bare checkout, so treat it as Tier C provenance rather than a working entry point.
 
 `data/synthetic/repeat_summary.csv` contains the 20 pairs, so the bootstrap interval *is*
 regenerable from the CSV alone; see the optional snippet below.
@@ -52,11 +74,19 @@ regenerable from the CSV alone; see the optional snippet below.
 ```python
 import numpy as np, pandas as pd
 rs = pd.read_csv("data/synthetic/repeat_summary.csv")
-r = rs.full_overall_rmse_rad_m.values / rs.csmt_overall_rmse_rad_m.values
+fv = rs.full_overall_rmse_rad_m.values
+cv = rs.csmt_overall_rmse_rad_m.values
 rng = np.random.default_rng(0)
-bs = [rng.choice(r, r.size, replace=True).mean() for _ in range(20000)]
-print(np.percentile(bs, [2.5, 97.5]))   # expect approximately [2.59, 3.69]
+bs = np.empty(20000)
+for i in range(20000):
+    idx = rng.integers(0, fv.size, fv.size)   # same indices for both methods
+    bs[i] = fv[idx].mean() / cv[idx].mean()   # ratio of means, not mean of ratios
+print(np.percentile(bs, [2.5, 97.5]))         # [2.59, 3.67]
 ```
+
+The resampling unit is the paired realization, and both methods must be resampled with the
+same indices. Averaging the per-realization ratios instead gives 3.33 with an interval near
+[2.83, 3.86]; that is a different statistic and is not what the article reports.
 
 ## Regenerating the manifest
 

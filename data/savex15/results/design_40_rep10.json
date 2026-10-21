@@ -1,0 +1,24 @@
+{
+  "csv_sha256": "2e5561537d804f136defecf39b901d92b3e35bb42f18d284dbcae5954ac00743",
+  "frames": 144,
+  "geometry": "design_40",
+  "init_accepted_refine": false,
+  "init_coarse_scores": [
+    0.18884035457415366,
+    0.782082652412836
+  ],
+  "init_full_runtime_seconds": 4.593720999997458,
+  "init_k": [
+    1.2541227705419622,
+    1.2475368433449445,
+    1.2375147802190478
+  ],
+  "init_refined_scores": [
+    0.1891423450106378,
+    0.77292446472741
+  ],
+  "lock_sha256": "22a39f91f8c0a3b3f0bc58bbef4cb710aca63db3047e867eec79f21f94678905",
+  "name": "design_40_rep10",
+  "status": "COMPLETE",
+  "trial": 10
+}

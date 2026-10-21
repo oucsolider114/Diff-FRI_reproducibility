@@ -93,7 +93,7 @@ def main():
   for ax,kind in zip(axs,['offset','contrast']):
     rows=sorted([x for x in summary if x['perturbation'] in ('nominal',kind)],key=lambda x:x['delta_m_s'])
     ax.plot([x['delta_m_s'] for x in rows],[x['rmse_pooled']*1e3 for x in rows],marker='o',label='Pooled update RMSE')
-    ax.set_title('Uniform speed offset' if kind=='offset' else 'Thermocline contrast variation')
+    ax.set_title('Uniform speed offset' if kind=='offset' else 'Profile contrast perturbation')
     ax.set_xlabel('Input SSP perturbation (m/s)');ax.set_ylabel('Tracking RMSE ($10^{-3}$ rad/m)');ax.grid(alpha=.25)
   fig.tight_layout();fig.savefig(OUT/'SSP_profile_perturbation.pdf');plt.close(fig)
   fingerprints={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [ORIGINAL,CORE/'configs/csmt_v2_independent_holdout.json',CORE/'outputs/kraken_timevarying_csmt_crosscheck_formal/arrays/kraken_dynamic_truth.npz']}

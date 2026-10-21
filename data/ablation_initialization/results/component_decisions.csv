@@ -1,0 +1,5 @@
+﻿ablation,classification,significant_metrics_full_better,positive_mean_metrics_full_better,total_metrics
+no_prediction,LIMITED_NON_SIGNIFICANT_TREND,0,4,4
+no_ssp_awareness,COMPONENT_SUPPORTED,4,4,4
+fixed_local_window,PARTIAL_SUPPORT,1,4,4
+no_reacquire_gate,NO_CLEAR_CONTRIBUTION_UNDER_NOMINAL_PROTOCOL,0,0,4

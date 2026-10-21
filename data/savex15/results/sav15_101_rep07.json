@@ -1,0 +1,24 @@
+{
+  "csv_sha256": "884572a9a76ae4c76e644b2856e7136558773efbf9a647e837d0ec67547078bd",
+  "frames": 144,
+  "geometry": "sav15_101",
+  "init_accepted_refine": false,
+  "init_coarse_scores": [
+    0.14445266770726933,
+    0.5189832557826283
+  ],
+  "init_full_runtime_seconds": 11.041917800001102,
+  "init_k": [
+    1.2595811678532154,
+    1.2540708261133375,
+    1.2521857092023265
+  ],
+  "init_refined_scores": [
+    0.1438968606994593,
+    0.535231273368421
+  ],
+  "lock_sha256": "22a39f91f8c0a3b3f0bc58bbef4cb710aca63db3047e867eec79f21f94678905",
+  "name": "sav15_101_rep07",
+  "status": "COMPLETE",
+  "trial": 7
+}

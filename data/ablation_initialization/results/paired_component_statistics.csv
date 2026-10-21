@@ -1,0 +1,17 @@
+﻿ablation,comparison,direction,n_trials,mean_difference,median_difference,bootstrap_ci_low,bootstrap_ci_high,win_rate_full_better,significant_full_advantage
+no_prediction,k_rmse_ablation_minus_full,positive_means_ablation_worse,20,1.771643875996879e-07,5.47441557033877e-07,-2.0793471568945702e-06,1.9929451040036496e-06,0.65,False
+no_prediction,no_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,2.0206479314360815e-06,4.040771313122346e-05,-0.0002004628309799025,0.0001601162824658406,0.65,False
+no_prediction,known_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,1.5821313179649812e-05,7.251758858240961e-05,-0.0001957694695868094,0.00018527438622929846,0.6,False
+no_prediction,coupling_correlation_full_minus_ablation,positive_means_ablation_worse,20,1.4323103862401432e-06,1.6762067687248194e-05,-5.650655202476812e-05,5.517385249069939e-05,0.55,False
+no_ssp_awareness,k_rmse_ablation_minus_full,positive_means_ablation_worse,20,3.5719258798897704e-06,3.915422793049518e-06,1.8186790765377357e-06,5.306649028216606e-06,0.75,True
+no_ssp_awareness,no_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,0.0002612135020680839,0.0002562205945490382,8.188965979319476e-05,0.0004342096033402634,0.85,True
+no_ssp_awareness,known_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,0.0002942045304959231,0.00024137179332699848,0.00012063388649779417,0.0004640160665839349,0.8,True
+no_ssp_awareness,coupling_correlation_full_minus_ablation,positive_means_ablation_worse,20,0.000278500242587848,0.0001234925755834726,0.0001114250158680108,0.00046155719715300266,0.7,True
+fixed_local_window,k_rmse_ablation_minus_full,positive_means_ablation_worse,20,6.301511955003219e-05,-1.8687807885227337e-06,-1.3553050409059952e-06,0.0001828693839300552,0.4,False
+fixed_local_window,no_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,0.0064837717262795636,-8.987723730354176e-05,-0.00012004017186984173,0.018829608351076572,0.45,False
+fixed_local_window,known_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,0.00699753809246287,-0.00010389845982498348,-0.00023281165850334344,0.0205462066733991,0.45,False
+fixed_local_window,coupling_correlation_full_minus_ablation,positive_means_ablation_worse,20,0.01269993742244584,0.00016442620868323266,0.0001560227248354424,0.037453336204684745,0.65,True
+no_reacquire_gate,k_rmse_ablation_minus_full,positive_means_ablation_worse,20,-2.8753040295689715e-05,-1.0952444431431516e-05,-5.838606860592303e-05,-1.0065490439711428e-05,0.0,False
+no_reacquire_gate,no_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,-0.002619359940517182,-0.0009435281785956859,-0.005179102249602772,-0.000845555587373281,0.1,False
+no_reacquire_gate,known_coupling_coeff_error_ablation_minus_full,positive_means_ablation_worse,20,-0.0027245741762736333,-0.0010863863348462895,-0.00524673961709884,-0.0010868373312656497,0.05,False
+no_reacquire_gate,coupling_correlation_full_minus_ablation,positive_means_ablation_worse,20,-0.006215293656994442,-0.00019582693273989538,-0.01611807528949742,-0.0006752754509535116,0.1,False

@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 *.npz
 !data/arrays/*.npz
+!data/savex15/arrays/*.npz
 *.sio
 *.log
 *.aux

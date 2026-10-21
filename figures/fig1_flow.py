@@ -80,7 +80,7 @@ def build(figsize=(3.45, 4.75)):
             fontsize=6.9, fontweight="bold", linespacing=1.12)
     box(7.50, 5.28, 3.00, 0.50, r"prediction $\tilde{k}_t$", fs=6.0)
     box(7.50, 4.64, 3.00, 0.50, r"window $\mathcal{W}$, 9 pts", fs=6.0)
-    diamond(7.50, 3.86, 2.30, 0.70, "data gate")
+    diamond(7.50, 3.86, 2.60, 0.70, r"mean $\downarrow$ check", fs=5.8)
     arrow((7.55, 5.86), (7.55, 5.56))
     arrow((7.55, 5.03), (7.55, 4.90))
     arrow((7.55, 4.39), (7.55, 4.22))
@@ -98,10 +98,10 @@ def build(figsize=(3.45, 4.75)):
 
     # same-gate link
     ax.plot([3.82, 6.18], [3.86, 3.86], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
-    ax.text(5.0, 4.12, "same gate", ha="center", va="center", fontsize=5.3,
+    ax.text(5.0, 4.12, "shared objective", ha="center", va="center", fontsize=5.3,
             style="italic", bbox=dict(boxstyle="square,pad=0.12", fc="white", ec="none"))
     ax.text(5.0, 2.05,
-            r"accept if mean $\downarrow$ and worst snapshot not $\uparrow$",
+            r"Diff-FRI gate: mean $\downarrow$, worst not $\uparrow$",
             ha="center", va="center", fontsize=5.7, style="italic")
     ax.text(5.0, 1.35, r"window width $\leftarrow \Delta k$, SSP change",
             ha="center", va="center", fontsize=5.9)

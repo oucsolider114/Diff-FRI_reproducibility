@@ -1,0 +1,161 @@
+{
+  "experiment": "csmt_v2_independent_holdout",
+  "decision": "PROMOTE_CSMT_V2",
+  "csmt_v2_parameter_hash": "3dd3f22811c41288c3ec29616b62134e1b9d4d54c055653a9612336cf2189cd5",
+  "source_cmtr_v1_parameter_hash": "e7393cb9cfefbd0b736caf80527fc33e69cee7947a9d7b679fe4541ca94400e1",
+  "source_cmtr_v1_decision": "STRONG_SUPPORT",
+  "trial_count": 20,
+  "frames_per_trial": 21,
+  "aggregate": {
+    "full_mean_k_rmse": 0.0007968895155733016,
+    "alpha_mean_k_rmse": 0.0007240172408817351,
+    "cmtr_v1_mean_k_rmse": 0.0002695370482322139,
+    "csmt_v2_mean_k_rmse": 0.0002493916650414574,
+    "full_mean_runtime_s": 2.8703150411904494,
+    "cmtr_v1_mean_runtime_s": 0.23432415833332404,
+    "csmt_v2_mean_runtime_s": 0.1458215411905084,
+    "csmt_speedup_vs_full": 19.683751918658775,
+    "csmt_speedup_vs_cmtr_v1": 1.6069241651148884,
+    "alpha_no_coupling_coeff_error": 0.0643226720345972,
+    "cmtr_v1_no_coupling_coeff_error": 0.028835462039138275,
+    "csmt_v2_no_coupling_coeff_error": 0.026607798442650137,
+    "alpha_known_coupling_coeff_error": 0.06518952330939745,
+    "cmtr_v1_known_coupling_coeff_error": 0.028812572465129572,
+    "csmt_v2_known_coupling_coeff_error": 0.02685110719240418,
+    "alpha_known_coupling_correlation": 0.9743282612911199,
+    "cmtr_v1_known_coupling_correlation": 0.9921234696054514,
+    "csmt_v2_known_coupling_correlation": 0.9940669219300814
+  },
+  "promotion_flags": {
+    "k_noninferior_to_cmtr_v1": true,
+    "runtime_better_than_cmtr_v1": true,
+    "no_coupling_noninferior_to_cmtr_v1": true,
+    "known_coupling_noninferior_to_cmtr_v1": true,
+    "correlation_noninferior_to_cmtr_v1": true,
+    "k_supported_vs_full": true,
+    "runtime_supported_vs_full": true,
+    "no_coupling_supported_vs_alpha": true,
+    "known_coupling_supported_vs_alpha": true,
+    "correlation_supported_vs_alpha": true
+  },
+  "practical_flags": {
+    "k_noninferior_to_cmtr_v1": true,
+    "runtime_better_than_cmtr_v1": true,
+    "no_coupling_noninferior_to_cmtr_v1": true,
+    "known_coupling_noninferior_to_cmtr_v1": true,
+    "correlation_noninferior_to_cmtr_v1": true,
+    "k_supported_vs_full": true,
+    "runtime_supported_vs_full": true,
+    "no_coupling_supported_vs_alpha": true,
+    "known_coupling_supported_vs_alpha": true,
+    "correlation_supported_vs_alpha": true
+  },
+  "real_time_capability_fraction": {
+    "1s": 0.9523809523809523,
+    "5s": 1.0,
+    "10s": 1.0,
+    "30s": 1.0,
+    "60s": 1.0
+  },
+  "paired_statistics": [
+    {
+      "comparison": "csmt_minus_cmtr_k_rmse",
+      "direction_better": "lower",
+      "n_trials": 20,
+      "mean_difference": -2.014538319075635e-05,
+      "median_difference": -3.098244604635527e-06,
+      "bootstrap_ci_low": -3.433531198546798e-05,
+      "bootstrap_ci_high": -7.799127360011126e-06,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "csmt_minus_full_k_rmse",
+      "direction_better": "lower",
+      "n_trials": 20,
+      "mean_difference": -0.000547497850531844,
+      "median_difference": -0.0005155515288398909,
+      "bootstrap_ci_low": -0.0006231992474452381,
+      "bootstrap_ci_high": -0.0004734564853321703,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "csmt_minus_cmtr_runtime",
+      "direction_better": "lower",
+      "n_trials": 20,
+      "mean_difference": -0.08850261714281563,
+      "median_difference": -0.13262108571446635,
+      "bootstrap_ci_low": -0.12330100735113339,
+      "bootstrap_ci_high": -0.05426389993432037,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "no_coupling_csmt_minus_cmtr_coeff_error",
+      "direction_better": "lower",
+      "n_trials": 20,
+      "mean_difference": -0.0022276635964881423,
+      "median_difference": -0.00035209813586693263,
+      "bootstrap_ci_low": -0.003853680809364452,
+      "bootstrap_ci_high": -0.0008277127977164298,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "no_coupling_csmt_minus_alpha_coeff_error",
+      "direction_better": "lower",
+      "n_trials": 20,
+      "mean_difference": -0.03771487359194704,
+      "median_difference": -0.03505665307788172,
+      "bootstrap_ci_low": -0.04550008753868012,
+      "bootstrap_ci_high": -0.03149433914231075,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "known_coupling_csmt_minus_cmtr_coeff_error",
+      "direction_better": "lower",
+      "n_trials": 20,
+      "mean_difference": -0.001961465272725386,
+      "median_difference": -0.00028403954563432574,
+      "bootstrap_ci_low": -0.003369307400940244,
+      "bootstrap_ci_high": -0.0007646841871929046,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "known_coupling_csmt_minus_alpha_coeff_error",
+      "direction_better": "lower",
+      "n_trials": 20,
+      "mean_difference": -0.03833841611699326,
+      "median_difference": -0.03411826586154097,
+      "bootstrap_ci_low": -0.0473423365947273,
+      "bootstrap_ci_high": -0.03138195514083907,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "known_coupling_csmt_minus_cmtr_correlation",
+      "direction_better": "higher",
+      "n_trials": 20,
+      "mean_difference": 0.0019434523246302405,
+      "median_difference": 6.854458696664567e-05,
+      "bootstrap_ci_low": 0.0005839593476077288,
+      "bootstrap_ci_high": 0.003650440103212505,
+      "significant_direction": "CSMT_BETTER"
+    },
+    {
+      "comparison": "known_coupling_csmt_minus_alpha_correlation",
+      "direction_better": "higher",
+      "n_trials": 20,
+      "mean_difference": 0.019738660638961382,
+      "median_difference": 0.02186937721524007,
+      "bootstrap_ci_low": 0.015408548631100635,
+      "bootstrap_ci_high": 0.023733425824190496,
+      "significant_direction": "CSMT_BETTER"
+    }
+  ],
+  "scientific_boundary": {
+    "new_stochastic_sequences": true,
+    "csmt_v2_retuned_after_holdout_start": false,
+    "csmt_v2_has_reacquire": false,
+    "cmtr_v1_has_real_reacquire": true,
+    "future_information": false,
+    "bottom_parameters_in_online_methods": false,
+    "K": 3
+  }
+}

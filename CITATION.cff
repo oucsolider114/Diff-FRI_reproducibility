@@ -22,8 +22,8 @@ authors:
     affiliation: Ocean University of China
 type: software
 license: MIT
-version: 1.0.1
-date-released: "2026-10-20"
+version: 1.1.0
+date-released: "2026-10-21"
 repository-code: "https://github.com/oucsolider114/Diff-FRI_reproducibility"
 url: "https://github.com/oucsolider114/Diff-FRI_reproducibility"
 keywords:
@@ -34,8 +34,5 @@ keywords:
   - finite-rate-of-innovation
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.23500771"
-    description: "Zenodo archive of version 1.0.0"
-  - type: doi
     value: "10.5281/zenodo.23500770"
-    description: "Zenodo concept DOI, resolving to the latest version"
+    description: "Zenodo concept DOI, resolving to the latest archived version"

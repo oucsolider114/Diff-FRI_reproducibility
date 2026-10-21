@@ -1,0 +1,53 @@
+{
+  "parameter_hash": "3dd3f22811c41288c3ec29616b62134e1b9d4d54c055653a9612336cf2189cd5",
+  "locked_payload": {
+    "experiment": "csmt_v2_independent_holdout",
+    "source_cmtr_v1_hash": "e7393cb9cfefbd0b736caf80527fc33e69cee7947a9d7b679fe4541ca94400e1",
+    "csmt_v2": {
+      "beta_pred": 0.5,
+      "delta0_rad_m": 0.0012,
+      "delta_min_rad_m": 0.0008,
+      "delta_max_rad_m": 0.004,
+      "lambda_k": 1.5,
+      "lambda_ssp": 0.15,
+      "minimum_mode_separation_rad_m": 0.0035,
+      "local_grid_points": 9,
+      "local_coordinate_sweeps": 2,
+      "enable_quadratic_subgrid": true
+    },
+    "trial_count": 20,
+    "seed_namespace": "csmt_v2_independent_holdout_newdata_20260911",
+    "success_threshold_rad_m": 0.0015,
+    "real_time_periods_s": [
+      1,
+      5,
+      10,
+      30,
+      60
+    ],
+    "statistics": {
+      "bootstrap_samples": 20000,
+      "ci_level": 0.95,
+      "bootstrap_seed_namespace": "csmt_v2_independent_holdout_bootstrap"
+    },
+    "decision_rule": {
+      "max_k_ratio_vs_cmtr_v1": 1.05,
+      "max_runtime_ratio_vs_cmtr_v1": 0.8,
+      "practical_max_runtime_ratio_vs_cmtr_v1": 1.0,
+      "max_downstream_ratio_vs_cmtr_v1": 1.05,
+      "correlation_tolerance": 0.01,
+      "max_k_ratio_vs_full": 1.05,
+      "max_runtime_ratio_vs_full": 0.7,
+      "practical_max_runtime_ratio_vs_full": 0.8,
+      "max_downstream_ratio_vs_alpha": 1.05,
+      "note": "PROMOTE_CSMT_V2 requires non-inferiority to frozen CMTR-v1 in k accuracy and downstream metrics, >=20% lower runtime than CMTR-v1, and retention of the previously used Full/Alpha-beta support constraints. Thresholds are locked before execution."
+    },
+    "physical_protocol": {
+      "K": 3,
+      "time_points": 21,
+      "time_span_s": 1200.0,
+      "canonical_environment": "outputs/canonical_dynamic_benchmark_v1/cache/environment.npz"
+    }
+  },
+  "note": "Frozen before the first CSMT-v2 independent holdout trial."
+}

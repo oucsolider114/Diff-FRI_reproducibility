@@ -2,6 +2,10 @@
 
 Code and data for the JASA Express Letters article
 
+**Version v1.1.0 (2026-10-21)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
+and predictor-holdout datasets, so that Secs. S6, S10, S18, and S20 are reproducible from
+the repository alone.
+
 > **Causal sequential tracking of modal horizontal wavenumbers via bounded local updates**
 > Lingnan Liu, Fajun Liu, and Pengyu Wang (Ocean University of China)
 
@@ -35,6 +39,11 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 | `data/robustness/` | One-factor sweeps for Sec. 3.2 |
 | `data/swellex/` | Per-frame exports for Sec. 3.3–3.4 (Fig. 3) and the cadence audit |
 | `data/baselines/` | Estimator-class comparison behind Table I |
+| `data/arrays/` | SWellEx pressure-field arrays (experiment-level re-run needs the original project layout) |
+| `data/savex15/` | Sec. S10: SAVEX15 forward arrays, SSPs, per-realization results, StageA/StageB scripts |
+| `data/vla_geometry/` | Sec. S20: controlled VLA-geometry sweep — 1680 per-frame rows, summaries, protocol lock |
+| `data/ablation_initialization/` | Sec. S6: three-stage initialization ablation (100 trials) |
+| `data/predictor_holdout/` | Sec. S18: independent holdout for the fixed predictor and closed-loop β sweep |
 | `protocols/` | Experiment parameters as JSON |
 | `figures/` | Figure scripts and their PDF output |
 | `docs/` | Column dictionary and step-by-step reproduction notes |
@@ -47,9 +56,15 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 | Fig. 2 (accuracy) | `python figures/fig2_accuracy.py` | `data/synthetic/*.csv` |
 | Fig. 3 (field) | `python figures/fig3_swellex.py` | `data/swellex/csmt_fixed_ssp_i9606.csv`, `…/Table_final_experimental_summary.csv` |
 
-Every number printed in the article is either read directly from a CSV in `data/` or
-computed from one by a script in `figures/` or `experiments/`. No timing value is
-hard-coded: the two medians used in Fig. 3(b) are read from the experimental summary table.
+Nearly every number printed in the article is either read directly from a CSV in `data/` or
+computed from one by a script in `figures/` or `experiments/`. The one exception is the
+K=3/5/8 scan in Sec. S2, whose per-trial records are not exported separately (noted in S2).
+No timing value is hard-coded: the two medians used in Fig. 3(b) are read from the
+experimental summary table.
+
+The scripts under `data/savex15/scripts/` and `data/vla_geometry/scripts/` are retained for
+provenance and expect the original project layout; see `docs/REPRODUCE.md` (Tier C) before
+attempting a cold-start rerun. The archived NPZ/CSV are the authoritative outputs.
 
 ## What is not included
 
@@ -57,7 +72,7 @@ hard-coded: the two medians used in Fig. 3(b) are read from the experimental sum
 |---|---|---|
 | SWellEx-96 raw waveforms | 567 MB, publicly archived | <https://swellex96.ucsd.edu/s5.htm> |
 | SAVEX15 environmental data | distributed by SEANOE | doi:10.17882/72285 |
-| `.npz` intermediate arrays | large, regenerable from the CSV exports | Zenodo archive (see `CITATION.cff`) |
+| SAVEX15 forward-field KRAKEN output (`.prt`/`.mod`/`.env`) | ~42 MB of intermediates, regenerable by `NN_FRI_SAVEX15_Physics_Repair_v1.py` | this repository ships the resulting `.npz` arrays |
 | KRAKEN executables | third-party, not redistributable | obtain from the authors of the model |
 | Full three-CTD estimate arrays | restricted by the source archive | on request from the corresponding author |
 
