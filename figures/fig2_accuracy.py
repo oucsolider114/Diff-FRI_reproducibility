@@ -31,8 +31,7 @@ def build():
     fm = pd.read_csv(DATA / "frame_metrics.csv", encoding="utf-8-sig")
     rs = pd.read_csv(DATA / "repeat_summary.csv", encoding="utf-8-sig")
 
-    fig, axs = plt.subplots(2, 1, figsize=(3.45, 4.9),
-                            gridspec_kw={"height_ratios": [1.12, 1]})
+    fig, axs = plt.subplots(1, 2, figsize=(7.2, 2.85))
 
     # (a) trajectories, first realization
     ax = axs[0]

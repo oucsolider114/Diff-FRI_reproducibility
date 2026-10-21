@@ -22,9 +22,9 @@ plt.rcParams.update({
 OUT = Path(__file__).resolve().parents[1] / "figures" / "out"
 
 
-def build(figsize=(3.45, 4.75)):
+def build(figsize=(5.75, 3.15)):
     fig, ax = plt.subplots(figsize=figsize)
-    ax.set_xlim(0, 10); ax.set_ylim(0.4, 10); ax.axis("off")
+    ax.set_xlim(0, 14.2); ax.set_ylim(2.30, 10); ax.axis("off")
 
     def box(x, y, w, h, txt, fs=7.2, bold=False, fc="white", lw=0.9):
         ax.add_patch(FancyBboxPatch((x - w / 2, y - h / 2), w, h,
@@ -100,14 +100,15 @@ def build(figsize=(3.45, 4.75)):
     ax.plot([3.82, 6.18], [3.86, 3.86], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
     ax.text(5.0, 4.12, "shared objective", ha="center", va="center", fontsize=5.3,
             style="italic", bbox=dict(boxstyle="square,pad=0.12", fc="white", ec="none"))
-    ax.text(5.0, 2.05,
+    ax.text(10.15, 6.05,
             r"Diff-FRI gate: mean $\downarrow$, worst not $\uparrow$",
-            ha="center", va="center", fontsize=5.7, style="italic")
-    ax.text(5.0, 1.35, r"window width $\leftarrow \Delta k$, SSP change",
-            ha="center", va="center", fontsize=5.9)
-    ax.text(5.0, 0.72, r"$J_t$ is produced only by Module 1",
-            ha="center", va="center", fontsize=5.5, style="italic")
+            ha="left", va="center", fontsize=5.4, style="italic")
+    ax.text(10.15, 5.20, r"window width $\leftarrow \Delta k$, SSP change",
+            ha="left", va="center", fontsize=5.6)
+    ax.text(10.15, 4.35, r"$J_t$ is produced only by Module 1",
+            ha="left", va="center", fontsize=5.3, style="italic")
     ax.plot([5.0, 5.0], [3.20, 6.60], ls=(0, (1, 2)), lw=0.6, color="0.55")
+    ax.plot([9.95, 9.95], [3.30, 6.90], ls=(0, (1, 2)), lw=0.55, color="0.60")
 
     fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
     return fig

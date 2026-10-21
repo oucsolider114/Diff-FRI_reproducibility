@@ -42,7 +42,7 @@ def build():
     t_local = float(summ["CSMT runtime median (s)"])
     t_full = float(summ["Representative NNFR runtime median (s)"])
 
-    fig, axs = plt.subplots(2, 1, figsize=(3.45, 4.9))
+    fig, axs = plt.subplots(1, 2, figsize=(7.2, 2.55))
 
     ax = axs[0]
     ax.plot(frame, res, "-o", lw=0.7, ms=2.2, mfc="white", mec="black",
