@@ -40,7 +40,7 @@ def build(figsize=(5.75, 3.15)):
         ax.text(x, y, txt, ha="center", va="center", fontsize=fs)
 
     def arrow(p, q, ls="-", lw=0.8, conn="arc3,rad=0", shA=2, shB=2):
-        ax.add_patch(FancyArrowPatch(p, q, arrowstyle="-|>", mutation_scale=7, lw=lw,
+        ax.add_patch(FancyArrowPatch(p, q, arrowstyle="-|>", mutation_scale=6, lw=lw,
                                      linestyle=ls, color="black",
                                      shrinkA=shA, shrinkB=shB, connectionstyle=conn))
 
@@ -65,40 +65,39 @@ def build(figsize=(5.75, 3.15)):
 
     # module 2
     box(2.6, 4.90, 4.0, 3.30, "", fc="#f7f7f7")
-    ax.text(2.6, 6.10, "Module 2\nDiff-FRI\n$t=0$", ha="center", va="center",
-            fontsize=6.9, fontweight="bold", linespacing=1.12)
-    box(2.6, 5.28, 3.3, 0.50, "beam search (coarse)", fs=6.2)
-    box(2.6, 4.64, 3.3, 0.50, "continuous refinement", fs=6.2)
-    diamond(2.6, 3.86, 2.4, 0.70, "data gate")
-    arrow((2.6, 5.86), (2.6, 5.56))
-    arrow((2.6, 5.03), (2.6, 4.90))
-    arrow((2.6, 4.39), (2.6, 4.22))
+    ax.text(2.6, 6.10, "Module 2\nDiff-FRI, $t=0$", ha="center", va="center",
+            fontsize=6.9, fontweight="bold", linespacing=1.10)
+    box(2.6, 5.35, 3.3, 0.50, "beam search (coarse)", fs=6.2)
+    box(2.6, 4.55, 3.3, 0.50, "continuous refinement", fs=6.2)
+    diamond(2.6, 3.68, 2.4, 0.70, "data gate")
+    arrow((2.6, 5.86), (2.6, 5.62))
+    arrow((2.6, 5.08), (2.6, 4.82))
+    arrow((2.6, 4.28), (2.6, 4.05))
 
     # module 3
     box(7.55, 4.90, 4.10, 3.30, "", fc="#f7f7f7")
-    ax.text(7.55, 6.10, "Module 3\nCSMT\n$t\\geq 1$", ha="center", va="center",
-            fontsize=6.9, fontweight="bold", linespacing=1.12)
-    box(7.50, 5.28, 3.00, 0.50, r"prediction $\tilde{k}_t$", fs=6.0)
-    box(7.50, 4.64, 3.00, 0.50, r"window $\mathcal{W}$, 9 pts", fs=6.0)
-    diamond(7.50, 3.86, 2.60, 0.70, r"mean $\downarrow$ check", fs=5.8)
-    arrow((7.55, 5.86), (7.55, 5.56))
-    arrow((7.55, 5.03), (7.55, 4.90))
-    arrow((7.55, 4.39), (7.55, 4.22))
+    ax.text(7.55, 6.10, "Module 3\nCSMT, $t\\geq 1$", ha="center", va="center",
+            fontsize=6.9, fontweight="bold", linespacing=1.10)
+    box(7.50, 5.35, 3.00, 0.50, r"prediction $\tilde{k}_t$", fs=6.0)
+    box(7.50, 4.55, 3.00, 0.50, r"window $\mathcal{W}$, 9 pts", fs=6.0)
+    diamond(7.50, 3.68, 2.60, 0.70, r"mean $\downarrow$ check", fs=5.8)
+    arrow((7.55, 5.86), (7.55, 5.62))
+    arrow((7.55, 5.08), (7.55, 4.82))
+    arrow((7.55, 4.28), (7.55, 4.05))
 
     # feedback loop
-    arrow((8.66, 3.96), (9.12, 4.58), conn="arc3,rad=0.40", lw=0.7)
-    arrow((9.12, 4.58), (9.00, 5.28), lw=0.7)
-    ax.text(9.20, 4.58, "t+1", fontsize=5.6, ha="left", va="center")
+    arrow((8.78, 3.68), (9.01, 4.48), conn="arc3,rad=-0.45", lw=0.7)
+    ax.text(9.10, 4.06, "t+1", fontsize=5.6, ha="left", va="center")
 
     # outputs
-    arrow((2.6, 3.50), (2.6, 3.02))
-    arrow((7.55, 3.50), (7.55, 3.02))
+    arrow((2.6, 3.33), (2.6, 3.02))
+    arrow((7.55, 3.33), (7.55, 3.02))
     ax.text(2.6, 2.80, r"$\hat{\mathbf{k}}_0$", ha="center", va="center", fontsize=7.8)
     ax.text(7.55, 2.80, r"$\hat{\mathbf{k}}_t$", ha="center", va="center", fontsize=7.8)
 
     # same-gate link
-    ax.plot([3.82, 6.18], [3.86, 3.86], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
-    ax.text(5.0, 4.12, "shared objective", ha="center", va="center", fontsize=5.3,
+    ax.plot([3.82, 6.18], [3.68, 3.68], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
+    ax.text(5.0, 3.94, "shared objective", ha="center", va="center", fontsize=5.3,
             style="italic", bbox=dict(boxstyle="square,pad=0.12", fc="white", ec="none"))
     ax.text(10.15, 6.05,
             r"Diff-FRI gate: mean $\downarrow$, worst not $\uparrow$",

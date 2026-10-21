@@ -2,7 +2,7 @@
 
 Code and data for the JASA Express Letters article
 
-**Version v1.1.0 (2026-10-21)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
+**Version v1.1.1 (2026-10-21)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
 and predictor-holdout datasets, so that Secs. S6, S10, S18, and S20 are reproducible from
 the repository alone.
 
@@ -19,8 +19,8 @@ global re-estimate. Association, not fit, is the operating limit.
 
 ```bash
 pip install -r requirements.txt
-python experiments/cadence_audit.py      # writes data/swellex/cadence_audit.csv
-bash figures/make_all.sh                 # writes figures/out/*.pdf
+python experiments/cadence_audit.py      # rewrites data/swellex/cadence_audit.csv (manifest-protected)
+bash figures/make_all.sh                 # writes figures/out_repro/; archived figures untouched
 ```
 
 To check a single figure without writing files:
@@ -75,6 +75,17 @@ attempting a cold-start rerun. The archived NPZ/CSV are the authoritative output
 | SAVEX15 forward-field KRAKEN output (`.prt`/`.mod`/`.env`) | ~42 MB of intermediates, regenerable by `NN_FRI_SAVEX15_Physics_Repair_v1.py` | this repository ships the resulting `.npz` arrays |
 | KRAKEN executables | third-party, not redistributable | obtain from the authors of the model |
 | Full three-CTD estimate arrays | restricted by the source archive | on request from the corresponding author |
+
+## v1.1.0 -> v1.1.1
+
+- All text files normalized to **LF**; added `.gitattributes` (`* text=auto eol=lf`).
+- `MANIFEST.sha256` recomputed on LF, so the local tree, the GitHub archive and the
+  Zenodo record now agree. The v1.1.0 manifest was computed on CRLF working-tree files
+  and therefore reported 136 spurious mismatches against the LF release archive.
+- `figures/make_all.sh` writes to `figures/out_repro/` and no longer overwrites the
+  archived figures that the manifest protects.
+- Tier A scope in `docs/REPRODUCE.md` narrowed; the K=3/5/8 sweep is noted as having no
+  per-trial export.
 
 ## Data license and third-party terms
 

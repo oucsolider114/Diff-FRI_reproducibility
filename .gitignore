@@ -14,3 +14,6 @@ __pycache__/
 .ipynb_checkpoints/
 .DS_Store
 Thumbs.db
+
+# reproduction outputs must never be committed or hashed
+figures/out_repro/

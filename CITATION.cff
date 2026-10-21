@@ -22,7 +22,7 @@ authors:
     affiliation: Ocean University of China
 type: software
 license: MIT
-version: 1.1.0
+version: 1.1.1
 date-released: "2026-10-21"
 repository-code: "https://github.com/oucsolider114/Diff-FRI_reproducibility"
 url: "https://github.com/oucsolider114/Diff-FRI_reproducibility"

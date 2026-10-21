@@ -36,9 +36,12 @@ Not every reported result is reachable at the same level. The three tiers are:
 
 | Tier | What runs | Which results |
 |---|---|---|
-| **A. Table and figure recomputation** | Python from the archived CSV only | Fig. 1–3, Table I, every summary table, the bootstrap interval |
+| **A. Table and figure recomputation** | Python from the archived CSV only | Fig. 1–3, Table I, the S23/S25 sweep tables, the S24 cadence audit, the bootstrap interval |
 | **B. Estimator re-run on archived pressures** | needs `data/arrays/Y_frames.npz` **and** the original `SWellEx96_S5_CSMT/` tree; not self-contained | the cadence audit via `experiments/rerun_cadence_from_arrays.py` — **fails in a bare checkout** |
 | **C. Cold-start experiment re-run** | needs the original project layout, the KRAKEN binary, and the raw external inputs; **not** self-contained in this archive | Sec. S10 StageA/StageB, Sec. S20 geometry sweep |
+
+Not covered at Tier A: the K=3/5/8 retained-mode sweep of Sec. S2. Its per-trial records were
+not exported; only the three pooled RMSE values are quoted in the supplement.
 
 Tier A is verified in a clean checkout. Tier B has been exercised on the development machine
 but depends on modules that remain in `src/mode_fri/` and on the original `SWellEx96_S5_CSMT/`

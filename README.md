@@ -1,6 +1,6 @@
 # 基于有界局部更新的模态水平波数因果序贯跟踪
 
-**版本 v1.1.0（2026-10-21）** — 在 v1.0.1 基础上补入 SAVEX15、VLA 几何、初始化消融与预测器 holdout
+**版本 v1.1.1（2026-10-21）** — 在 v1.0.1 基础上补入 SAVEX15、VLA 几何、初始化消融与预测器 holdout
 四组数据，使论文正文 3.1–3.4 与补充材料 S6、S10、S18、S20 全部可从本仓库复现。
 
 一次全局 Diff-FRI（可微有限新息率）初始化，随后是由声速剖面变化驱动的有界局部更新（CSMT）。
@@ -14,8 +14,8 @@
 
 ```bash
 pip install -r requirements.txt
-python experiments/cadence_audit.py      # 生成 data/swellex/cadence_audit.csv
-bash figures/make_all.sh                 # 生成 figures/out/*.pdf
+python experiments/cadence_audit.py      # 重写 data/swellex/cadence_audit.csv（受哈希保护）
+bash figures/make_all.sh                 # 输出到 figures/out_repro/，不覆盖归档图
 ```
 
 只想看某一张图、不落盘：
@@ -135,6 +135,15 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 - 新增 `data/predictor_holdout/`（0.23 MB）：Sec. S18 的独立 holdout 与 β 重算记录
 - 更新 `MANIFEST.sha256`、`README`、`README_EN`、`CITATION.cff`
 - 至此论文原本标注“realization-level records available on request”的两处数据已全部包含在本仓库内
+
+## v1.1.0 → v1.1.1 变更摘要
+
+- 全部文本文件统一为 **LF** 换行，新增 `.gitattributes`（`* text=auto eol=lf`）；
+  `MANIFEST.sha256` 按 LF 重算，GitHub、Zenodo 与本地三处现在一致。
+- 修正 v1.1.0 的清单不匹配：该版清单基于 Windows 工作区的 CRLF 计算，
+  而 release 归档为 LF，导致 136 条误报。
+- `figures/make_all.sh` 改为输出到 `figures/out_repro/`，不再覆盖受清单保护的归档图。
+- `docs/REPRODUCE.md` 的 Tier A 范围收窄，并注明 K=3/5/8 扫描无逐 trial 导出。
 
 ## 数据许可与第三方条款
 
