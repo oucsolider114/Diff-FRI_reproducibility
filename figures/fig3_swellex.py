@@ -45,12 +45,19 @@ def build():
     fig, axs = plt.subplots(1, 2, figsize=(7.2, 2.55))
 
     ax = axs[0]
+    # retained-association frames (7 of the 67 scored frames)
+    cm = pd.read_csv(DATA / "cadence_frame_metrics.csv", encoding="utf-8-sig")
+    nr = cm[(cm["schedule"] == "no_reset") & (cm["retained"] == 1) & (cm["frame"] > 2)]
+    kept = sorted(nr["frame"].astype(int).tolist())
+    for f in kept:
+        ax.axvspan(f - 0.5, f + 0.5, color="0.86", lw=0, zorder=0)
+
     ax.plot(frame, res, "-o", lw=0.7, ms=2.2, mfc="white", mec="black",
             mew=0.55, color="0.55", label="per frame")
     ax.plot(frame, roll, "-", lw=1.4, color="black", label="7-frame mean")
     ax.set_xlabel("SWellEx frame index", labelpad=1.5)
     ax.set_ylabel("Normalized residual (dimensionless)", labelpad=1.5)
-    ax.set_title("(a) projection residual over 67 updates", fontsize=7.5, loc="left", pad=2)
+    ax.set_title("(a) projection residual, 67 updates (shaded: 7 retained)", fontsize=7.2, loc="left", pad=2)
     ax.legend(frameon=False, fontsize=6.1, loc="upper left", handlelength=1.6,
               borderaxespad=0.2)
 
@@ -60,7 +67,7 @@ def build():
     ax.semilogy(n, n * t_local, "-o", lw=1.0, ms=2.0, mfc="white", mec="black",
                 mew=0.55, label="CSMT update")
     ax.set_xlabel("Update index", labelpad=1.5)
-    ax.set_ylabel("Cumulative time (s)", labelpad=1.5)
+    ax.set_ylabel("Cumulative time (s, log scale)", labelpad=1.5)
     ax.set_title("(b) accumulated cost (log scale)", fontsize=7.5, loc="left", pad=2)
     ax.legend(frameon=False, fontsize=6.1, loc="lower right", handlelength=1.6,
               borderaxespad=0.2)

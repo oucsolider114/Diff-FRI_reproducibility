@@ -2,7 +2,7 @@
 
 Code and data for the JASA Express Letters article
 
-**Version v1.1.2 (2026-10-21)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
+**Version v1.1.3 (2026-10-26)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
 and predictor-holdout datasets. The archive supports recomputation of the main reported
 figures and summary statistics from derived data. Selected experiment-level reruns require
 external inputs and the original computing environment; see `docs/REPRODUCE.md` for the
@@ -14,8 +14,8 @@ three reproduction tiers.
 One global differentiable finite-rate-of-innovation (Diff-FRI) initialization followed by
 bounded, sound-speed-conditioned local updates (CSMT). In a 40 m synthetic waveguide the
 tracker lowers all-frame wavenumber error by a factor of 3.09 relative to framewise
-estimation; on SWellEx-96 Event S5 a local update costs 0.108 s against 102.58 s for a
-global re-estimate. Association, not fit, is the operating limit.
+estimation; on SWellEx-96 Event S5 a local update consumes 0.36% of the 30 s observation
+window against 342% for a global re-estimate. Association, not fit, is the operating limit.
 
 ## Quick start
 
@@ -77,6 +77,12 @@ attempting a cold-start rerun. The archived NPZ/CSV are the authoritative output
 | SAVEX15 forward-field KRAKEN output (`.prt`/`.mod`/`.env`) | ~42 MB of intermediates, regenerable by `NN_FRI_SAVEX15_Physics_Repair_v1.py` | this repository ships the resulting `.npz` arrays |
 | KRAKEN executables | third-party, not redistributable | obtain from the authors of the model |
 | Full three-CTD estimate arrays | restricted by the source archive | on request from the corresponding author |
+
+## v1.1.2 -> v1.1.3
+
+- `figures/fig1_flow.py`: the dashed guide in the flow diagram is broken at its label.
+- `figures/fig3_swellex.py`: panel (a) gains grey bands for the 7 retained frames; panel (b) is labelled with a log-scale axis; the caption follows.
+- The cost statement in `CITATION.cff` and both `README` files now uses the observation-window ratio, matching the manuscript (a local update is 0.36% of the 30 s window; a global re-estimate is 342%).
 
 ## v1.1.1 -> v1.1.2
 

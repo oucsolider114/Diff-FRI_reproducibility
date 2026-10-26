@@ -1,11 +1,11 @@
 # 基于有界局部更新的模态水平波数因果序贯跟踪
 
-**版本 v1.1.2（2026-10-21）** — 在 v1.0.1 基础上补入 SAVEX15、VLA 几何、初始化消融与预测器 holdout
+**版本 v1.1.3（2026-10-26）** — 在 v1.0.1 基础上补入 SAVEX15、VLA 几何、初始化消融与预测器 holdout
 四组数据。归档可支持从派生数据复算论文报告的主要图表与汇总统计；部分实验级重跑需要外部输入与原始计算环境，三级复现范围见 `docs/REPRODUCE.md`。
 
 一次全局 Diff-FRI（可微有限新息率）初始化，随后是由声速剖面变化驱动的有界局部更新（CSMT）。
 在 40 m 合成波导中，全帧波数误差相对逐帧独立估计降低 **3.09 倍**；在 SWellEx-96 实验 S5
-数据上，单次局部更新耗时 **0.108 s**，而全局重估需要 **102.58 s**。设计的真正边界是
+数据上，单次局部更新消耗 30 s 观测窗口的 **0.36%**，而全局重估需要 **342%**。设计的真正边界是
 **模态归属（association）**，而不是拟合残差。
 
 > English version: [README_EN.md](README_EN.md)
@@ -135,6 +135,12 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 - 新增 `data/predictor_holdout/`（0.23 MB）：Sec. S18 的独立 holdout 与 β 重算记录
 - 更新 `MANIFEST.sha256`、`README`、`README_EN`、`CITATION.cff`
 - 至此论文原本标注“realization-level records available on request”的两处数据已全部包含在本仓库内
+
+## v1.1.2 → v1.1.3 变更摘要
+
+- `figures/fig1_flow.py`：流程框图中的虚线在标签处断开。
+- `figures/fig3_swellex.py`：图 (a) 增加 7 个保留帧的灰色阴影带；图 (b) 纵轴标注对数刻度；图注同步更新。
+- `CITATION.cff` 与两份 `README` 的成本表述由绝对耗时改为观测窗口比例，与论文正文口径一致。
 
 ## v1.1.1 → v1.1.2 变更摘要
 

@@ -51,13 +51,13 @@ def build(figsize=(5.75, 3.15)):
 
     # module 1
     box(5, 8.15, 6.7, 0.92,
-        "Module 1 (shared)\ntrial dictionary  $\\psi\\rightarrow\\Phi\\rightarrow$  residual $J_t(\\mathbf{k})$", fs=6.9)
+        "Module 1 (shared)\ntrial dictionary  $\\psi\\rightarrow\\Phi\\rightarrow$  residual $\\mathbf{R}_t$", fs=6.9)
 
     # fan out
     arrow((3.3, 7.66), (2.65, 6.58), ls="--", lw=0.7)
     arrow((6.7, 7.66), (7.35, 6.58), ls="--", lw=0.7)
-    ax.text(2.30, 7.18, r"$J_t(\mathbf{k})$", fontsize=6.3, ha="right")
-    ax.text(7.70, 7.18, r"$J_t(\mathbf{k})$", fontsize=6.3, ha="left")
+    ax.text(2.30, 7.18, r"$\mathbf{R}_t$", fontsize=6.3, ha="right")
+    ax.text(7.70, 7.18, r"$\mathbf{R}_t$", fontsize=6.3, ha="left")
 
     # divider labels
     ax.text(4.72, 6.86, r"$t=0$", fontsize=6.1, ha="right")
@@ -97,16 +97,17 @@ def build(figsize=(5.75, 3.15)):
 
     # same-gate link
     ax.plot([3.82, 6.18], [3.68, 3.68], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
-    ax.text(5.0, 3.94, "shared objective", ha="center", va="center", fontsize=5.3,
+    ax.text(5.0, 3.94, "shared trial dictionary", ha="center", va="center", fontsize=5.3,
             style="italic", bbox=dict(boxstyle="square,pad=0.12", fc="white", ec="none"))
     ax.text(10.15, 6.05,
             r"Diff-FRI gate: mean $\downarrow$, worst not $\uparrow$",
             ha="left", va="center", fontsize=5.4, style="italic")
     ax.text(10.15, 5.20, r"window width $\leftarrow \Delta k$, SSP change",
             ha="left", va="center", fontsize=5.6)
-    ax.text(10.15, 4.35, r"$J_t$ is produced only by Module 1",
+    ax.text(10.15, 4.35, r"$\mathbf{R}_t$ is produced only by Module 1",
             ha="left", va="center", fontsize=5.3, style="italic")
-    ax.plot([5.0, 5.0], [3.20, 6.60], ls=(0, (1, 2)), lw=0.6, color="0.55")
+    ax.plot([5.0, 5.0], [3.20, 3.60], ls=(0, (1, 2)), lw=0.6, color="0.55")
+    ax.plot([5.0, 5.0], [4.28, 6.60], ls=(0, (1, 2)), lw=0.6, color="0.55")
     ax.plot([9.95, 9.95], [3.30, 6.90], ls=(0, (1, 2)), lw=0.55, color="0.60")
 
     fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)

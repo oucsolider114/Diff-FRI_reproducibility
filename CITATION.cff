@@ -6,8 +6,8 @@ abstract: >-
   horizontal wavenumbers. One differentiable finite-rate-of-innovation initialization is
   followed by bounded, sound-speed-conditioned local updates. In a 40 m synthetic waveguide
   the tracker lowers all-frame wavenumber error by a factor of 3.09 relative to framewise
-  estimation; on SWellEx-96 Event S5 a local update costs 0.108 s against 102.58 s for a
-  global re-estimate. The operating limit is mode-order association, not residual fit.
+  estimation; on SWellEx-96 Event S5 a local update consumes 0.36% of the 30 s observation
+  window against 342% for a global re-estimate. The operating limit is mode-order association, not residual fit.
   Liu Lingnan and Liu Fajun contributed equally to this work; Pengyu Wang is the
   corresponding author (wangpengyu@ouc.edu.cn).
 authors:
@@ -22,8 +22,8 @@ authors:
     affiliation: Ocean University of China
 type: software
 license: MIT
-version: 1.1.2
-date-released: "2026-10-21"
+version: 1.1.3
+date-released: "2026-10-26"
 repository-code: "https://github.com/oucsolider114/Diff-FRI_reproducibility"
 url: "https://github.com/oucsolider114/Diff-FRI_reproducibility"
 keywords:
