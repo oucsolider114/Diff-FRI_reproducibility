@@ -41,9 +41,9 @@ def build():
         ax.plot(t, r0[f"kraken_k{i}"].values, "-", lw=1.0, color="black",
                 label="KRAKEN" if i == 1 else None)
         ax.plot(t, r0[f"csmt_k{i}"].values, "o", ms=2.5, mfc="white", mec="black",
-                mew=0.6, label="CSMT" if i == 1 else None)
+                mew=0.6, label="SMT" if i == 1 else None)
     ax.set_xlabel("Time (min)", labelpad=1.5)
-    ax.set_ylabel(r"Wavenumber (rad m$^{-1}$)", labelpad=1.5)
+    ax.set_ylabel(r"Wavenumber (rad/m)", labelpad=1.5)
     ax.set_title("(a) modal trajectories", fontsize=7.5, loc="left", pad=2)
     ax.set_ylim(1.2245, 1.2670)
     ax.legend(frameon=False, fontsize=6.1, loc="upper center", ncol=2,
@@ -60,8 +60,8 @@ def build():
     ax.plot([x.mean()], [y.mean()], "D", ms=6.0, color="crimson",
             mec="black", mew=0.6, zorder=5)
     ax.set_xlim(0, lim); ax.set_ylim(0, lim)
-    ax.set_xlabel(r"Framewise Full RMSE ($\times10^{-4}$ rad m$^{-1}$)", labelpad=1.5)
-    ax.set_ylabel(r"CSMT RMSE ($\times10^{-4}$ rad m$^{-1}$)", labelpad=1.5)
+    ax.set_xlabel(r"Framewise Full RMSE ($\times10^{-4}$ rad/m)", labelpad=1.5)
+    ax.set_ylabel(r"SMT RMSE ($\times10^{-4}$ rad/m)", labelpad=1.5)
     ax.set_title("(b) 20 paired realizations", fontsize=7.5, loc="left", pad=2)
     rng = np.random.default_rng(0)
     bs = np.empty(20000)
@@ -69,7 +69,7 @@ def build():
         idx = rng.integers(0, x.size, x.size)
         bs[i] = x[idx].mean() / y[idx].mean()
     lo, hi = np.percentile(bs, [2.5, 97.5])
-    ax.text(0.03, 0.96, f"mean ratio {x.mean()/y.mean():.2f}\n95% CI [{lo:.2f}, {hi:.2f}]",
+    ax.text(0.03, 0.96, f"framewise/SMT = {x.mean()/y.mean():.2f}\n95% CI [{lo:.2f}, {hi:.2f}]",
             transform=ax.transAxes, ha="left", va="top", fontsize=6.1, linespacing=1.25)
 
     fig.tight_layout(pad=0.4)

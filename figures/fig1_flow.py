@@ -51,7 +51,7 @@ def build(figsize=(5.75, 3.15)):
 
     # module 1
     box(5, 8.15, 6.7, 0.92,
-        "Module 1 (shared)\ntrial dictionary  $\\psi\\rightarrow\\Phi\\rightarrow$  residual $\\mathbf{R}_t$", fs=6.9)
+        "Module 1 (shared)\ntrial modal basis  $\\psi\\rightarrow\\Phi\\rightarrow$  residual $\\mathbf{R}_t$", fs=6.9)
 
     # fan out
     arrow((3.3, 7.66), (2.65, 6.58), ls="--", lw=0.7)
@@ -67,18 +67,18 @@ def build(figsize=(5.75, 3.15)):
     box(2.6, 4.90, 4.0, 3.30, "", fc="#f7f7f7")
     ax.text(2.6, 6.10, "Module 2\nDiff-FRI, $t=0$", ha="center", va="center",
             fontsize=6.9, fontweight="bold", linespacing=1.10)
-    box(2.6, 5.35, 3.3, 0.50, "beam search (coarse)", fs=6.2)
+    box(2.6, 5.35, 3.3, 0.50, "coarse grid search", fs=6.2)
     box(2.6, 4.55, 3.3, 0.50, "continuous refinement", fs=6.2)
-    diamond(2.6, 3.68, 2.4, 0.70, "data gate")
+    diamond(2.6, 3.68, 2.4, 0.70, "acceptance test")
     arrow((2.6, 5.86), (2.6, 5.62))
     arrow((2.6, 5.08), (2.6, 4.82))
     arrow((2.6, 4.28), (2.6, 4.05))
 
     # module 3
     box(7.55, 4.90, 4.10, 3.30, "", fc="#f7f7f7")
-    ax.text(7.55, 6.10, "Module 3\nCSMT, $t\\geq 1$", ha="center", va="center",
+    ax.text(7.55, 6.10, "Module 3\nSMT, $t\\geq 1$", ha="center", va="center",
             fontsize=6.9, fontweight="bold", linespacing=1.10)
-    box(7.50, 5.35, 3.00, 0.50, r"prediction $\tilde{k}_t$", fs=6.0)
+    box(7.50, 5.35, 3.00, 0.50, r"extrapolation $\tilde{k}_t$", fs=6.0)
     box(7.50, 4.55, 3.00, 0.50, r"window $\mathcal{W}$, 9 pts", fs=6.0)
     diamond(7.50, 3.68, 2.60, 0.70, r"mean $\downarrow$ check", fs=5.8)
     arrow((7.55, 5.86), (7.55, 5.62))
@@ -97,10 +97,10 @@ def build(figsize=(5.75, 3.15)):
 
     # same-gate link
     ax.plot([3.82, 6.18], [3.68, 3.68], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
-    ax.text(5.0, 3.94, "shared trial dictionary", ha="center", va="center", fontsize=5.3,
+    ax.text(5.0, 3.94, "shared trial modal basis", ha="center", va="center", fontsize=5.3,
             style="italic", bbox=dict(boxstyle="square,pad=0.12", fc="white", ec="none"))
     ax.text(10.15, 6.05,
-            r"Diff-FRI gate: mean $\downarrow$, worst not $\uparrow$",
+            r"Diff-FRI acceptance: mean $\downarrow$, worst not $\uparrow$",
             ha="left", va="center", fontsize=5.4, style="italic")
     ax.text(10.15, 5.20, r"window width $\leftarrow \Delta k$, SSP change",
             ha="left", va="center", fontsize=5.6)

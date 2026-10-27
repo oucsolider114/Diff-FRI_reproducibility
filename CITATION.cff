@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: "If you use this code or these data, please cite this archived release. The associated journal article will be citable once it is published."
-title: "Causal sequential tracking of modal horizontal wavenumbers via bounded local updates"
+title: "Sequential tracking of modal horizontal wavenumbers via bounded local updates"
 abstract: >-
-  Reference implementation and data package for a causal sequential tracker of modal
+  Reference implementation and data package for a sequential modal tracker of
   horizontal wavenumbers. One differentiable finite-rate-of-innovation initialization is
   followed by bounded, sound-speed-conditioned local updates. In a 40 m synthetic waveguide
   the tracker lowers all-frame wavenumber error by a factor of 3.09 relative to framewise
   estimation; on SWellEx-96 Event S5 a local update consumes 0.36% of the 30 s observation
-  window against 342% for a global re-estimate. The operating limit is mode-order association, not residual fit.
+  window against 342% for a global re-estimate. The operating limit is mode-order correspondence, not residual fit.
   Liu Lingnan and Liu Fajun contributed equally to this work; Pengyu Wang is the
   corresponding author (wangpengyu@ouc.edu.cn).
 authors:

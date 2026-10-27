@@ -65,7 +65,7 @@ def build():
     n = np.arange(1, len(frame) + 1)
     ax.semilogy(n, n * t_full, "--", lw=1.0, color="black", label="global re-estimate")
     ax.semilogy(n, n * t_local, "-o", lw=1.0, ms=2.0, mfc="white", mec="black",
-                mew=0.55, label="CSMT update")
+                mew=0.55, label="SMT update")
     ax.set_xlabel("Update index", labelpad=1.5)
     ax.set_ylabel("Cumulative time (s, log scale)", labelpad=1.5)
     ax.set_title("(b) accumulated cost (log scale)", fontsize=7.5, loc="left", pad=2)

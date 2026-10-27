@@ -1,0 +1,70 @@
+{
+  "experiment": "dynamic_local_basis_coupling_suite_v1",
+  "output_root": "outputs/dynamic_local_basis_coupling_suite",
+  "frequency_hz": 300.0,
+  "water_depth_m": 40.0,
+  "dz_m": 1.0,
+  "receiver_array": {
+    "start_depth_m": 1.0,
+    "end_depth_m": 40.0,
+    "spacing_m": 1.0
+  },
+  "K_values": [
+    3,
+    5
+  ],
+  "time_points": 21,
+  "time_span_s": 1200.0,
+  "oracle_root_scan_points": 6000,
+  "ssp_dynamic": {
+    "model": "localized_vertical_displacement_of_frozen_SSP",
+    "amplitude_m": 4.0,
+    "center_depth_m": 16.0,
+    "vertical_taper_sigma_m": 8.0,
+    "second_harmonic_fraction": 0.25,
+    "second_harmonic_phase_rad": 0.35,
+    "note": "Controlled strong time-varying thermocline for concept validation; not claimed as SWARM-95 measured SSP.",
+    "reference_profile": {
+      "surface_speed_m_s": 1525.0,
+      "deep_speed_m_s": 1490.0,
+      "mixed_layer_bottom_m": 8.0,
+      "thermocline_bottom_m": 24.0,
+      "note": "Controlled strong-thermocline profile for dynamic-basis concept validation; not the frozen 5 m/s benchmark SSP and not claimed as measured SWARM-95 data."
+    }
+  },
+  "forward_bottom": {
+    "water_density_kg_m3": 1000.0,
+    "sound_speed_m_s": 1753.0,
+    "density_kg_m3": 1957.0,
+    "note": "Used only by the controlled oracle/forward root solver. Never supplied to Proposed or local-mode recovery."
+  },
+  "estimation": {
+    "snr_db": 10.0,
+    "snapshots": 20,
+    "repeats": 2,
+    "base_seed": 20260909,
+    "grid_size": 512,
+    "grid_min_separation_rad_m": 0.004,
+    "top_n_hypotheses": 5,
+    "beam_branch_factor": 6,
+    "beam_width": 24,
+    "gate_tolerance": 1e-12,
+    "note": "Dynamic-aware adapter keeps the frozen Top-N -> continuous refinement -> data-only gate logic, while building coarse/gate dictionaries from the current SSP."
+  },
+  "tracking": {
+    "snr_db": 30.0,
+    "base_seed": 20261909,
+    "note": "High-SNR tracking pressure isolates basis/decomposition effects from severe measurement noise."
+  },
+  "coupling": {
+    "mode_pair_1based": [
+      1,
+      2
+    ],
+    "max_mixing_angle_rad": 0.55,
+    "coupling_phase_rad": 0.65,
+    "event_center_fraction": 0.55,
+    "event_width_fraction": 0.16,
+    "note": "Known unitary two-mode mixing is an imposed truth signal for testing whether dynamic basis tracking preserves genuine modal-energy exchange."
+  }
+}

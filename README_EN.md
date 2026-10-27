@@ -1,4 +1,4 @@
-# Causal sequential tracking of modal horizontal wavenumbers
+# Sequential tracking of modal horizontal wavenumbers
 
 Code and data for the JASA Express Letters article
 
@@ -10,7 +10,7 @@ figures and summary statistics from derived data. Selected experiment-level reru
 external inputs and the original computing environment; see `docs/REPRODUCE.md` for the
 three reproduction tiers.
 
-> **Causal sequential tracking of modal horizontal wavenumbers via bounded local updates**
+> **Sequential tracking of modal horizontal wavenumbers via bounded local updates**
 > Lingnan Liu, Fajun Liu, and Pengyu Wang (Ocean University of China)
 
 One global differentiable finite-rate-of-innovation (Diff-FRI) initialization followed by

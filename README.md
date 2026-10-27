@@ -1,14 +1,14 @@
-# 基于有界局部更新的模态水平波数因果序贯跟踪
+# 基于有界局部更新的模态水平波数序贯跟踪
 
 **版本 v1.1.4（2026-10-27）** — 在 v1.1.3 基础上补入补充材料 S26 的 OCMS 对比实现
 （`experiments/s26_ocms_comparison/`）、`src/mode_fri/direct_benchmark.py` 与
 `configs/canonical_dynamic_benchmark_v1.json`，并在 `requirements.txt` 声明 `cvxpy`/`clarabel`；
 这些文件在 v1.1.3 中缺失。归档可支持从派生数据复算论文报告的主要图表与汇总统计；部分实验级重跑需要外部输入与原始计算环境，三级复现范围见 `docs/REPRODUCE.md`。
 
-一次全局 Diff-FRI（可微有限新息率）初始化，随后是由声速剖面变化驱动的有界局部更新（CSMT）。
+一次全局 Diff-FRI（可微有限新息率）初始化，随后是由声速剖面变化驱动的有界局部更新（SMT；代码中的模块与类名沿用历史标识符 `CSMTConfig` / `CausalSSPModalTracking`）。
 在 40 m 合成波导中，全帧波数误差相对逐帧独立估计降低 **3.09 倍**；在 SWellEx-96 实验 S5
 数据上，单次局部更新消耗 30 s 观测窗口的 **0.36%**，而全局重估需要 **342%**。设计的真正边界是
-**模态归属（association）**，而不是拟合残差。
+**模式阶数对应关系（mode-order correspondence）**，而不是拟合残差。
 
 > English version: [README_EN.md](README_EN.md)
 

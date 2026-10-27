@@ -1,8 +1,8 @@
 # S26 — OCMS vs Diff-FRI initializer comparison
 
-Supplementary Sec. S26 compares the single-shooting OCMS estimator of Li et al. (2026)
+Supplementary Sec. S26 compares a multi-snapshot OCMS-inspired baseline (Li et al., 2026)
 with this work's Diff-FRI initializer, on the same 40-m / 300-Hz / 10-dB synthetic frame,
-and then tracks the resulting initialization with CSMT over the 21-frame evolving-SSP record.
+and then tracks the resulting initialization with SMT over the 21-frame evolving-SSP record.
 
 ## What this directory contains
 
@@ -13,13 +13,15 @@ and then tracks the resulting initialization with CSMT over the 21-frame evolvin
 | `ssp_wavenumbers.py` | Reference wavenumbers for a supplied sound-speed profile (KRAKEN-equivalent recurrence). |
 | `eps_sweep.py`, `eps_sweep.csv` | Tolerance sensitivity of the OCMS `l1` constraint. |
 | `ocms_compare.py`, `ocms_precise.py`, `ocms_v3.py` | Earlier OCMS implementations retained for provenance. |
+| `s26_rerun.csv` | Paired per-realization results behind Table S21. |
+| `refine_ablation.py`, `refine_ablation_forced.csv` | Paired coarse-vs-refined ablation (gate bypassed) supporting Supplementary Sec. S27. |
 
 ## Corrections applied
 
 1. **Estimator identity.** The first version of this comparison called
    `direct_estimator.estimate` (ModeFRINET multistage, 2300 steps, no beam search),
    which is *not* the Diff-FRI described in Sec. 2.3 of the main text.
-   `s26_rerun.py` calls `dynamic_topn_refined` — the 512-point beam search
+   `s26_rerun.py` calls `dynamic_topn_refined` — the 512-point coarse grid search
    (branch 6, width 24, top 5) followed by 100 coefficient-only and 400 joint
    refinement steps — which is the estimator the main text describes.
 
@@ -49,6 +51,31 @@ and then tracks the resulting initialization with CSMT over the 21-frame evolvin
    of the basin and returns the wrong modal set. The archived driver therefore orders
    candidates by the group-sparse objective alone. On paired realization 0 this changes
    the OCMS initialization error from 2.58e-2 to **4.02e-4 rad/m**.
+
+## Refinement ablation
+
+The data-fit acceptance test rejected the continuous refinement in all 20 realizations of
+this comparison, so the Diff-FRI arm returns its coarse-grid solution. `refine_ablation.py`
+isolates the refinement by calling `estimate_from_coarse` directly and tracking both arms
+from the same first-frame observation. Across the 20 realizations the refinement raises the
+median initialization RMSE from 2.729e-4 to 3.116e-4 rad/m (worse in 17 of 20) while the
+median tracking RMSE changes from 4.0642e-4 to 4.0644e-4 rad/m (paired median difference
++6.1e-9, 95% bootstrap interval [-2.8e-9, 1.2e-8]). It costs a median of 22.25 s against
+0.63 s for the coarse grid alone.
+
+## Scope check (evolving-SSP negative control)
+
+S26 and S27 use a uniform 1500 m/s column. `precheck_dynamic.py` repeats both comparisons on
+the canonical evolving profile (1525/1490 m/s layering, +/-3.7 m thermocline displacement,
+reference wavenumbers drifting up to 3.8e-3 rad/m). It writes
+`s26_precheck_dynamic.csv` and `s27_precheck_dynamic.csv` and never touches the uniform
+results. `eps_sweep_dynamic.py` repeats the OCMS tolerance sweep on that frame.
+
+Two of six checks reverse on the evolving profile: the paired tracking difference no longer
+straddles zero (median +8.6e-4 rad/m, 95% interval [9.1e-5, 6.5e-3]), and the forced
+refinement changes tracking RMSE by a median 1.5% (max 59%) instead of 0.004%. The other
+four keep their direction. The result is recorded in Supplementary Sec. S28 as a scope limit,
+not as a robustness confirmation.
 
 ## Provenance note
 
