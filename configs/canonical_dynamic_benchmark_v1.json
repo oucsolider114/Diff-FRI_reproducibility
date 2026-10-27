@@ -1,0 +1,52 @@
+{
+  "experiment": "canonical_dynamic_benchmark_v1",
+  "output_root": "outputs/canonical_dynamic_benchmark_v1",
+  "base_dynamic_config": "configs/dynamic_local_basis_coupling_suite.json",
+  "time_points": 21,
+  "time_span_s": 1200.0,
+  "trial_count": 20,
+  "environment": {
+    "amplitude_m": 4.0,
+    "rate_cycles_per_span": 1.0,
+    "note": "Uses the original controlled dynamic SSP model at the canonical rate=1."
+  },
+  "estimation": {
+    "snr_db": 10.0,
+    "snapshots": 20,
+    "base_seed": 20260910,
+    "note": "One deterministic seed schedule shared by the entire canonical benchmark."
+  },
+  "decomposition": {
+    "snr_db": 30.0,
+    "base_seed": 20261910,
+    "note": "The same pressure realization is shared by Fixed, Instantaneous, Alpha-beta, and Oracle for each trial/time/scenario."
+  },
+  "coupling": {
+    "strength_rad": 0.55,
+    "note": "Only no-coupling and the previously used 0.55-rad known-coupling truth are retained."
+  },
+  "alpha_beta_tracker": {
+    "alpha": 0.45,
+    "beta": 0.08,
+    "innovation_clip_rad_m": 0.003,
+    "minimum_mode_separation_rad_m": 0.0035,
+    "note": "Frozen before this canonical benchmark; no tuning against canonical results."
+  },
+  "statistics": {
+    "bootstrap_samples": 20000,
+    "bootstrap_seed": 20260910,
+    "ci_level": 0.95
+  },
+  "decision_rule": {
+    "coupling_correlation_tolerance": 0.01,
+    "note": "Composite support requires improvements in paired coefficient error/leakage and no-coupling spurious variation, without losing more than 0.01 coupling-energy correlation. Statistical support on coefficient error additionally requires the paired bootstrap 95% CI to remain below zero."
+  },
+  "resume": true,
+  "force_recompute": false,
+  "notes": [
+    "K=3 only: this benchmark decides whether temporal estimator development is justified.",
+    "21 points over 1200 s (60-s spacing) are frozen as the canonical temporal grid.",
+    "Twenty independent paired trials are used to avoid interpreting one stochastic realization as a general result.",
+    "Once COMPLETE.marker exists, do not change this protocol; create a new version instead."
+  ]
+}

@@ -2,8 +2,10 @@
 
 Code and data for the JASA Express Letters article
 
-**Version v1.1.3 (2026-10-26)** — adds the SAVEX15, VLA-geometry, initialization-ablation,
-and predictor-holdout datasets. The archive supports recomputation of the main reported
+**Version v1.1.4 (2026-10-27)** — adds the OCMS comparison of Supplementary Sec. S26
+(`experiments/s26_ocms_comparison/`), `src/mode_fri/direct_benchmark.py`, and
+`configs/canonical_dynamic_benchmark_v1.json`, and declares `cvxpy`/`clarabel` in
+`requirements.txt`; none of these were present in v1.1.3. The archive supports recomputation of the main reported
 figures and summary statistics from derived data. Selected experiment-level reruns require
 external inputs and the original computing environment; see `docs/REPRODUCE.md` for the
 three reproduction tiers.
@@ -77,6 +79,13 @@ attempting a cold-start rerun. The archived NPZ/CSV are the authoritative output
 | SAVEX15 forward-field KRAKEN output (`.prt`/`.mod`/`.env`) | ~42 MB of intermediates, regenerable by `NN_FRI_SAVEX15_Physics_Repair_v1.py` | this repository ships the resulting `.npz` arrays |
 | KRAKEN executables | third-party, not redistributable | obtain from the authors of the model |
 | Full three-CTD estimate arrays | restricted by the source archive | on request from the corresponding author |
+
+## v1.1.3 -> v1.1.4
+
+- `experiments/s26_ocms_comparison/`: the OCMS initializer comparison of Supplementary Sec. S26, absent from v1.1.3, is archived with the corrected driver that calls `dynamic_topn_refined` instead of the ModeFRINET multistage estimator.
+- `src/mode_fri/direct_benchmark.py` and `configs/canonical_dynamic_benchmark_v1.json`: recovered from the full experiment backup; `unified_benchmark.py` and `canonical_dynamic_benchmark_v1.py` previously imported files the archive did not contain.
+- `requirements.txt`: declares `cvxpy==1.9.3` and `clarabel==0.11.1`.
+- `MANIFEST.sha256` rebuilt.
 
 ## v1.1.2 -> v1.1.3
 

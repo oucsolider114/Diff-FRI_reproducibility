@@ -5,3 +5,6 @@ pandas==2.3.3
 matplotlib==3.11.0
 scipy>=1.14.1
 torch==2.12.1
+# Required only by the OCMS single-frame comparison (Supplementary Sec. S26).
+cvxpy==1.9.3
+clarabel==0.11.1

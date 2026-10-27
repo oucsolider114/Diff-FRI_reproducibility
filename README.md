@@ -1,7 +1,9 @@
 # 基于有界局部更新的模态水平波数因果序贯跟踪
 
-**版本 v1.1.3（2026-10-26）** — 在 v1.0.1 基础上补入 SAVEX15、VLA 几何、初始化消融与预测器 holdout
-四组数据。归档可支持从派生数据复算论文报告的主要图表与汇总统计；部分实验级重跑需要外部输入与原始计算环境，三级复现范围见 `docs/REPRODUCE.md`。
+**版本 v1.1.4（2026-10-27）** — 在 v1.1.3 基础上补入补充材料 S26 的 OCMS 对比实现
+（`experiments/s26_ocms_comparison/`）、`src/mode_fri/direct_benchmark.py` 与
+`configs/canonical_dynamic_benchmark_v1.json`，并在 `requirements.txt` 声明 `cvxpy`/`clarabel`；
+这些文件在 v1.1.3 中缺失。归档可支持从派生数据复算论文报告的主要图表与汇总统计；部分实验级重跑需要外部输入与原始计算环境，三级复现范围见 `docs/REPRODUCE.md`。
 
 一次全局 Diff-FRI（可微有限新息率）初始化，随后是由声速剖面变化驱动的有界局部更新（CSMT）。
 在 40 m 合成波导中，全帧波数误差相对逐帧独立估计降低 **3.09 倍**；在 SWellEx-96 实验 S5
@@ -135,6 +137,13 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 - 新增 `data/predictor_holdout/`（0.23 MB）：Sec. S18 的独立 holdout 与 β 重算记录
 - 更新 `MANIFEST.sha256`、`README`、`README_EN`、`CITATION.cff`
 - 至此论文原本标注“realization-level records available on request”的两处数据已全部包含在本仓库内
+
+## v1.1.3 → v1.1.4 变更摘要
+
+- 补入补充材料 S26 的 OCMS 对比实现 `experiments/s26_ocms_comparison/`（v1.1.3 中完全缺失）。
+- 补入 `src/mode_fri/direct_benchmark.py` 与 `configs/canonical_dynamic_benchmark_v1.json`；此前 `unified_benchmark.py` 与 `canonical_dynamic_benchmark_v1.py` 引用了归档中不存在的文件。
+- `requirements.txt` 声明 S26 对比所需的 `cvxpy` 与 `clarabel`。
+- `MANIFEST.sha256` 重建。
 
 ## v1.1.2 → v1.1.3 变更摘要
 
