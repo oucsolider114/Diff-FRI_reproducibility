@@ -94,3 +94,45 @@ python s26_rerun.py --start 0 --end 20 --out s26_rerun.csv
 
 Paths at the top of `s26_rerun.py` (`REPO`, `EXTRACT`) assume the archive layout and
 must be adjusted to the local checkout.
+
+---
+
+## KRAKEN-basis re-run (Supplementary Sec. S28, A'-1)
+
+The files above synthesize the water-column observations with seabed-free trial
+functions. Supplementary Sec. S28 additionally reports the same comparison with
+pressure observations synthesized from KRAKEN modal depth functions on a 1-m
+depth grid. Those files are:
+
+| File | Purpose |
+| --- | --- |
+| `precheck_kraken.py` | KRAKEN-basis pre-check: initialization and tracking RMSE, 20 paired realizations |
+| `precheck_kraken_refine.py` | forced and gated refinement ablation on that basis |
+| `precheck_aligned.py` | alignment helper shared by the two pre-checks |
+| `compare_aligned.py` | paired comparison of the two bases |
+| `stats_kraken.py` | per-column medians and means for the S27 ablation table |
+| `drift_range.py` | verifies the thermocline displacement span against Sec. 3 |
+| `s26_precheck_kraken.csv` | initializer comparison, KRAKEN basis |
+| `s27_precheck_kraken.csv` | refinement ablation, KRAKEN basis |
+| `s26_precheck_aligned.csv` | aligned water-column counterpart |
+| `s27_precheck_aligned.csv` | aligned water-column counterpart |
+
+Reproduce the numbers quoted in Sec. S28 (all seven match the manuscript):
+
+```bash
+python stats_kraken.py s27_precheck_kraken.csv
+```
+
+Expected, for the initializer comparison:
+
+    init paired mean difference      +3.404e-04 rad/m
+    tracking paired median difference +4.356e-07 rad/m
+    forced refinement, init          -6.20%   (ratio of across-realization means)
+    forced refinement, tracking      median +0.281%, range -16.86% to +6.63%
+    acceptance test                  6 of 20
+
+**Two cautions.** First, the depth grid here is 1 m (41 points), not the
+0.125 m grid of the main synthetic experiment, so these runs are not a
+single-variable control against the water-column runs above. Second, Sec. S28
+therefore reads them as a sensitivity check on the forward-data construction
+and does not attribute the reversal to any single cause.
