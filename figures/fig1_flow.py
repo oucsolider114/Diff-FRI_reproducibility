@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, Polygon, FancyArrowPatch
 
 plt.rcParams.update({
-    "font.size": 7.5, "axes.linewidth": 0.7,
+    "font.size": 8.6, "axes.linewidth": 0.7,
     "xtick.major.width": 0.6, "ytick.major.width": 0.6,
     "pdf.fonttype": 42,
 })
@@ -26,7 +26,7 @@ def build(figsize=(5.75, 3.15)):
     fig, ax = plt.subplots(figsize=figsize)
     ax.set_xlim(0, 14.2); ax.set_ylim(2.30, 10); ax.axis("off")
 
-    def box(x, y, w, h, txt, fs=7.2, bold=False, fc="white", lw=0.9):
+    def box(x, y, w, h, txt, fs=8.3, bold=False, fc="white", lw=0.9):
         ax.add_patch(FancyBboxPatch((x - w / 2, y - h / 2), w, h,
                                     boxstyle="round,pad=0.05,rounding_size=0.10",
                                     lw=lw, edgecolor="black", facecolor=fc))
@@ -34,7 +34,7 @@ def build(figsize=(5.75, 3.15)):
             ax.text(x, y, txt, ha="center", va="center", fontsize=fs,
                     fontweight="bold" if bold else "normal", linespacing=1.2)
 
-    def diamond(x, y, w, h, txt, fs=6.3):
+    def diamond(x, y, w, h, txt, fs=7.2):
         ax.add_patch(Polygon([[x, y + h / 2], [x + w / 2, y], [x, y - h / 2], [x - w / 2, y]],
                              closed=True, lw=0.9, edgecolor="black", facecolor="white"))
         ax.text(x, y, txt, ha="center", va="center", fontsize=fs)
@@ -45,31 +45,31 @@ def build(figsize=(5.75, 3.15)):
                                      shrinkA=shA, shrinkB=shB, connectionstyle=conn))
 
     # input
-    ax.text(5, 9.60, r"$\mathbf{Y}_t,\ z_r,\ \mathbf{c}_t$", ha="center", va="center", fontsize=7.4)
-    ax.text(5, 9.20, "input", ha="center", va="center", fontsize=6.0, style="italic")
+    ax.text(5, 9.60, r"$\mathbf{Y}_t,\ z_r,\ \mathbf{c}_t$", ha="center", va="center", fontsize=8.5)
+    ax.text(5, 9.20, "input", ha="center", va="center", fontsize=6.9, style="italic")
     arrow((5, 9.02), (5, 8.72))
 
     # module 1
     box(5, 8.15, 6.7, 0.92,
-        "Module 1 (shared)\ntrial modal basis  $\\psi\\rightarrow\\Phi\\rightarrow$  residual $\\mathbf{R}_t$", fs=6.9)
+        "Module 1 (shared)\ntrial modal basis  $\\psi\\rightarrow\\Phi\\rightarrow$  residual $\\mathbf{R}_t$", fs=7.9)
 
     # fan out
     arrow((3.3, 7.66), (2.65, 6.58), ls="--", lw=0.7)
     arrow((6.7, 7.66), (7.35, 6.58), ls="--", lw=0.7)
-    ax.text(2.30, 7.18, r"$\mathbf{R}_t$", fontsize=6.3, ha="right")
-    ax.text(7.70, 7.18, r"$\mathbf{R}_t$", fontsize=6.3, ha="left")
+    ax.text(2.30, 7.18, r"$\mathbf{R}_t$", fontsize=7.2, ha="right")
+    ax.text(7.70, 7.18, r"$\mathbf{R}_t$", fontsize=7.2, ha="left")
 
     # divider labels
-    ax.text(4.72, 6.86, r"$t=0$", fontsize=6.1, ha="right")
-    ax.text(5.28, 6.86, r"$t\geq 1$", fontsize=6.1, ha="left")
+    ax.text(4.72, 6.86, r"$t=0$", fontsize=7.0, ha="right")
+    ax.text(5.28, 6.86, r"$t\geq 1$", fontsize=7.0, ha="left")
 
     # module 2
     box(2.6, 4.90, 4.0, 3.30, "", fc="#f7f7f7")
     ax.text(2.6, 6.10, "Module 2\nDiff-FRI, $t=0$", ha="center", va="center",
-            fontsize=6.9, fontweight="bold", linespacing=1.10)
-    box(2.6, 5.35, 3.3, 0.50, "coarse grid search", fs=6.2)
-    box(2.6, 4.55, 3.3, 0.50, "continuous refinement", fs=6.2)
-    diamond(2.6, 3.68, 2.4, 0.70, "acceptance test")
+            fontsize=7.9, fontweight="bold", linespacing=1.10)
+    box(2.6, 5.35, 3.3, 0.50, "coarse grid search", fs=7.1)
+    box(2.6, 4.55, 3.3, 0.50, "continuous refinement", fs=7.1)
+    diamond(2.6, 3.68, 3.05, 0.70, "acceptance test", fs=6.6)
     arrow((2.6, 5.86), (2.6, 5.62))
     arrow((2.6, 5.08), (2.6, 4.82))
     arrow((2.6, 4.28), (2.6, 4.05))
@@ -77,35 +77,35 @@ def build(figsize=(5.75, 3.15)):
     # module 3
     box(7.55, 4.90, 4.10, 3.30, "", fc="#f7f7f7")
     ax.text(7.55, 6.10, "Module 3\nSMT, $t\\geq 1$", ha="center", va="center",
-            fontsize=6.9, fontweight="bold", linespacing=1.10)
-    box(7.50, 5.35, 3.00, 0.50, r"extrapolation $\tilde{k}_t$", fs=6.0)
-    box(7.50, 4.55, 3.00, 0.50, r"window $\mathcal{W}$, 9 pts", fs=6.0)
-    diamond(7.50, 3.68, 2.60, 0.70, r"mean $\downarrow$ check", fs=5.8)
+            fontsize=7.9, fontweight="bold", linespacing=1.10)
+    box(7.50, 5.35, 3.00, 0.50, r"extrapolation $\tilde{k}_t$", fs=6.9)
+    box(7.50, 4.55, 3.00, 0.50, r"window $\mathcal{W}$, 9 pts", fs=6.9)
+    diamond(7.50, 3.68, 2.60, 0.70, r"mean $\downarrow$ check", fs=6.7)
     arrow((7.55, 5.86), (7.55, 5.62))
     arrow((7.55, 5.08), (7.55, 4.82))
     arrow((7.55, 4.28), (7.55, 4.05))
 
     # feedback loop
     arrow((8.78, 3.68), (9.01, 4.48), conn="arc3,rad=-0.45", lw=0.7)
-    ax.text(9.10, 4.06, "t+1", fontsize=5.6, ha="left", va="center")
+    ax.text(9.10, 4.06, "t+1", fontsize=6.4, ha="left", va="center")
 
     # outputs
     arrow((2.6, 3.33), (2.6, 3.02))
     arrow((7.55, 3.33), (7.55, 3.02))
-    ax.text(2.6, 2.80, r"$\hat{\mathbf{k}}_0$", ha="center", va="center", fontsize=7.8)
-    ax.text(7.55, 2.80, r"$\hat{\mathbf{k}}_t$", ha="center", va="center", fontsize=7.8)
+    ax.text(2.6, 2.80, r"$\hat{\mathbf{k}}_0$", ha="center", va="center", fontsize=9.0)
+    ax.text(7.55, 2.80, r"$\hat{\mathbf{k}}_t$", ha="center", va="center", fontsize=9.0)
 
     # same-gate link
-    ax.plot([3.82, 6.18], [3.68, 3.68], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
-    ax.text(5.0, 3.94, "shared trial modal basis", ha="center", va="center", fontsize=5.3,
-            style="italic", bbox=dict(boxstyle="square,pad=0.12", fc="white", ec="none"))
+    ax.plot([4.13, 5.87], [3.68, 3.68], ls=(0, (1, 1.6)), lw=0.6, color="0.45")
+    ax.text(5.0, 4.07, "shared trial modal basis", ha="center", va="center", fontsize=5.4,
+            style="italic", bbox=dict(boxstyle="square,pad=0.02", fc="white", ec="none"))
     ax.text(10.15, 6.05,
-            r"Diff-FRI acceptance: mean $\downarrow$, worst not $\uparrow$",
-            ha="left", va="center", fontsize=5.4, style="italic")
+            "Diff-FRI acceptance:\nmean $\\downarrow$, worst not $\\uparrow$",
+            ha="left", va="center", fontsize=5.6, style="italic")
     ax.text(10.15, 5.20, r"window width $\leftarrow \Delta k$, SSP change",
-            ha="left", va="center", fontsize=5.6)
+            ha="left", va="center", fontsize=5.7)
     ax.text(10.15, 4.35, r"$\mathbf{R}_t$ is produced only by Module 1",
-            ha="left", va="center", fontsize=5.3, style="italic")
+            ha="left", va="center", fontsize=5.5, style="italic")
     ax.plot([5.0, 5.0], [3.20, 3.60], ls=(0, (1, 2)), lw=0.6, color="0.55")
     ax.plot([5.0, 5.0], [4.28, 6.60], ls=(0, (1, 2)), lw=0.6, color="0.55")
     ax.plot([9.95, 9.95], [3.30, 6.90], ls=(0, (1, 2)), lw=0.55, color="0.60")
