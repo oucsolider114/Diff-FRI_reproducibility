@@ -1,0 +1,15 @@
+{
+  "frames": 21,
+  "g_max_median": 0.00015440256426102472,
+  "g_max_min": 0.00010464142840582724,
+  "g_max_max": 0.00028446366983692073,
+  "d_l2_median": 0.00016393120823861784,
+  "frac_g_le_criterion": 1.0,
+  "frac_g_le_2criterion": 1.0,
+  "full_err_median": 0.0010508331052127672,
+  "ratio_g_over_full_err_median": 0.14693347925098163,
+  "alpha_truth_median": 0.11094644140336643,
+  "alpha_truth_q25": 0.09031329942355011,
+  "alpha_truth_q75": 0.1308083673326373,
+  "alpha_track_median": 0.4240148496313787
+}

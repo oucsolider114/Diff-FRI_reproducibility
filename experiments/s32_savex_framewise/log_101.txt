@@ -1,0 +1,6 @@
+rep  0 done (last frame 126): fw 3.009e-03 smt 7.103e-04
+rep  1 done (last frame 126): fw 3.013e-03 smt 5.697e-04
+rep  2 done (last frame 126): fw 2.815e-03 smt 5.027e-04
+rep  3 done (last frame 126): fw 1.520e-03 smt 1.466e-03
+rep  4 done (last frame 126): fw 3.014e-03 smt 7.884e-04
+wrote E:\Users\lenovo\tmp\s32\s32_sav15_101_r0-5.csv

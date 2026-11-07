@@ -1,0 +1,6 @@
+rep  0 done (last frame 126): fw 4.495e-04 smt 9.121e-04
+rep  1 done (last frame 126): fw 7.231e-04 smt 6.890e-04
+rep  2 done (last frame 126): fw 1.486e-03 smt 1.030e-03
+rep  3 done (last frame 126): fw 2.294e-03 smt 2.896e-03
+rep  4 done (last frame 126): fw 5.505e-04 smt 2.968e-04
+wrote E:\Users\lenovo\tmp\s32\s32_design_40_r0-5.csv

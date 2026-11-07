@@ -31,7 +31,7 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 | 路径 | 内容 |
 |---|---|
 | `src/mode_fri/` | 算法实现：试模态字典、Diff-FRI 初始化、CSMT 更新、参数配置 |
-| `experiments/` | 四个实验的驱动脚本，加上重锚节奏审计 |
+| `experiments/` | 正文与补充材料的驱动脚本：Secs. 3.1–3.4 的主实验，补充材料 S19、S20、S23–S32 的消融与对照 |
 | `data/synthetic/` | 正文章节 3.1（图 2）的逐帧与逐实现导出 |
 | `data/robustness/` | 章节 3.2 的单因子扫描 |
 | `data/swellex/` | 章节 3.3–3.4（图 3）的逐帧导出与重锚审计 |
