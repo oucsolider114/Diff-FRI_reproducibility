@@ -1,33 +1,20 @@
-# Sequential tracking of modal horizontal wavenumbers
+# Sequential tracking of modal horizontal wavenumbers via bounded local updates
 
-Code and data for the JASA Express Letters article
+**Version v1.1.11**
 
-**Version v1.1.4 (2026-10-27)** — adds the OCMS comparison of Supplementary Sec. S26
-(`experiments/s26_ocms_comparison/`), `src/mode_fri/direct_benchmark.py`, and
-`configs/canonical_dynamic_benchmark_v1.json`, and declares `cvxpy`/`clarabel` in
-`requirements.txt`; none of these were present in v1.1.3. The archive supports recomputation of the main reported
-figures and summary statistics from derived data. Selected experiment-level reruns require
-external inputs and the original computing environment; see `docs/REPRODUCE.md` for the
-three reproduction tiers.
+One global Diff-FRI (differentiable finite-rate-of-innovation) initialization is followed by bounded local updates driven by the evolving sound-speed profile (SMT; the module and class names retain the historical identifiers `CSMTConfig` / `CausalSSPModalTracking`). In a 40 m synthetic waveguide the all-frame wavenumber error drops by a **factor of 3.09** relative to independent framewise estimation; on SWellEx-96 Event S5 a single local update consumes **0.36%** of the 30 s observation window, against **342%** for a global re-estimate. The real limit of the design is **mode-order correspondence**, not residual fit.
 
-> **Sequential tracking of modal horizontal wavenumbers via bounded local updates**
-> Lingnan Liu, Fajun Liu, and Pengyu Wang (Ocean University of China)
-
-One global differentiable finite-rate-of-innovation (Diff-FRI) initialization followed by
-bounded, sound-speed-conditioned local updates (CSMT). In a 40 m synthetic waveguide the
-tracker lowers all-frame wavenumber error by a factor of 3.09 relative to framewise
-estimation; on SWellEx-96 Event S5 a local update consumes 0.36% of the 30 s observation
-window against 342% for a global re-estimate. Association, not fit, is the operating limit.
+> 中文版: [README.md](README.md)
 
 ## Quick start
 
 ```bash
 pip install -r requirements.txt
-python experiments/cadence_audit.py      # rewrites data/swellex/cadence_audit.csv (manifest-protected)
-bash figures/make_all.sh                 # writes figures/out_repro/; archived figures untouched
+python experiments/cadence_audit.py      # rewrites data/swellex/cadence_audit.csv (hash-protected)
+bash figures/make_all.sh                 # writes to figures/out_repro/, never overwrites archived figures
 ```
 
-To check a single figure without writing files:
+To render one figure to stdout without writing files:
 
 ```bash
 python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
@@ -37,88 +24,111 @@ python figures/fig2_accuracy.py --stdout > /tmp/fig2.pdf
 
 | Path | Contents |
 |---|---|
-| `src/mode_fri/` | Estimator implementation: trial dictionary, Diff-FRI initialization, CSMT update, configuration |
-| `experiments/` | Drivers for the four reported experiments plus the cadence audit |
-| `data/synthetic/` | Per-frame and per-realization exports for Sec. 3.1 (Fig. 2) |
-| `data/robustness/` | One-factor sweeps for Sec. 3.2 |
-| `data/swellex/` | Per-frame exports for Sec. 3.3–3.4 (Fig. 3) and the cadence audit |
-| `data/baselines/` | Estimator-class comparison behind Table I |
-| `data/arrays/` | SWellEx pressure-field arrays (experiment-level re-run needs the original project layout) |
-| `data/savex15/` | Sec. S10: SAVEX15 forward arrays, SSPs, per-realization results, StageA/StageB scripts |
-| `data/vla_geometry/` | Sec. S20: controlled VLA-geometry sweep — 1680 per-frame rows, summaries, protocol lock |
-| `data/ablation_initialization/` | Sec. S6: three-stage initialization ablation (100 trials) |
-| `data/predictor_holdout/` | Sec. S18: independent holdout for the fixed predictor and closed-loop β sweep |
-| `protocols/` | Experiment parameters as JSON |
-| `figures/` | Figure scripts and their PDF output |
-| `docs/` | Column dictionary and step-by-step reproduction notes |
+| `src/mode_fri/` | Algorithm: trial-mode dictionary, Diff-FRI initialization, CSMT update, configuration |
+| `experiments/` | Drivers for the main text (Secs. 3.1–3.4) and the supplement (S19, S20, S23–S33) |
+| `data/synthetic/` | Per-frame and per-realization exports of Sec. 3.1 (Fig. 2) |
+| `data/robustness/` | One-factor scans of Sec. 3.2 |
+| `data/swellex/` | Per-frame exports and re-anchoring audit of Secs. 3.3–3.4 (Fig. 3) |
+| `data/baselines/` | Estimator-class comparison of Table I |
+| `data/arrays/` | SWellEx pressure-field arrays (experiment-level rerun needs the original layout) |
+| `data/savex15/` | Sec. S10: SAVEX15 forward fields, SSPs and per-realization results |
+| `data/vla_geometry/` | Sec. S20: controlled VLA-geometry sweep, per-frame metrics and protocol lock |
+| `data/ablation_initialization/` | Sec. S6: 100-trial three-stage initialization ablation |
+| `data/predictor_holdout/` | Sec. S18: independent holdout of the fixed-coefficient predictor |
+| `data/ocms_manifold_geometry/` | Sec. S2.6: geometry diagnostics of the one-parameter closure |
+| `protocols/` | Experiment parameters (JSON) |
+| `figures/` | Plot scripts and archived PDFs |
+| `docs/` | Data dictionary and reproduction notes |
 
-## Reproducing each figure
+## Datasets
 
-| Figure | Command | Reads |
+### 1. `data/savex15/` (Supplementary Sec. S10)
+
+| Sub-path | Contents | Size |
 |---|---|---|
-| Fig. 1 (route) | `python figures/fig1_flow.py` | no data |
+| `arrays/KRAKEN_INDEPENDENT_FORWARD_design_40.npz` | 40 m forward field: `roots (144, 8)`, `receiver_mode_shapes (144, 40, 8)`, `c (144, 801)`, `receivers (40)` | 831 KB |
+| `arrays/KRAKEN_INDEPENDENT_FORWARD_sav15_101.npz` | 101 m forward field: `roots (144, 19)`, `receiver_mode_shapes (144, 21, 19)`, `c (144, 405)`, `receivers (21)` | 521 KB |
+| `arrays/SSP_INPUT_design_40.npz` | 144 measured SSP frames (40 m, 0.5 m grid) | 632 KB |
+| `arrays/SSP_INPUT_sav15_101.npz` | 144 measured SSP frames (101 m, 0.25 m grid) | 251 KB |
+| `results/` | 20 paired realizations × 2 configurations: per-frame CSV/JSON and summaries (83 files) | 8.7 MB |
+| `scripts/` | StageA (KRAKEN forward) and StageB (paired tracking) scripts, predeclared protocol, input provenance | 68 KB |
+
+`roots` holds the reference modal wavenumbers, `receiver_mode_shapes` the depth-sampled mode functions, `c` the per-frame sound-speed profiles. The arrays were generated by `scripts/NN_FRI_SAVEX15_Physics_Repair_v1.py`; the protocol is in `scripts/StageB_PREDECLARED_PROTOCOL.md`.
+
+**Note**: the raw SAVEX15 temperature and salinity observations are distributed by SEANOE (doi:10.17882/72285) and are not redistributed here. What is included — the derived SSPs and forward fields — is sufficient to recompute every number of Sec. S10.
+
+### 2. `data/vla_geometry/` (Supplementary Sec. S20)
+
+| Sub-path | Contents |
+|---|---|
+| `csv/frame_metrics.csv` | Per-frame metrics, **1680 rows** = 20 paired trials × 21 frames × 4 subarrays |
+| `csv/trial_summary.csv`, `geometry_summary.csv`, `paired_differences_vs_full.csv`, `geometry_protocol.csv` | Per-trial, per-geometry and paired-difference summaries |
+| `scripts/` | Geometry sweep and dynamic local-basis coupling scripts |
+| `PROTOCOL_LOCK.json`, `RESULT.json`, `RESULT_HASHES.csv`, `RESULT_SUMMARY.md` | Predeclared protocol lock, results and hashes |
+
+The four subarrays are `full_40` (40 elements / 39 m), `sparse_fullspan_20` (20 / 39 m), `short_mid_20` (20 / 19 m) and `short_mid_14` (14 / 13 m); only the two 20-element arrays hold the element count fixed.
+
+### 3. `data/ablation_initialization/` (Supplementary Sec. S6)
+
+| Sub-path | Contents |
+|---|---|
+| `results/frame_metrics.csv` | Per-frame errors of the three-stage initialization ablation (387 KB) |
+| `results/*_trial_summary.csv`, `*_aggregate.csv`, `paired_component_statistics.csv` | Per-trial, aggregate and paired statistics |
+| `protocol/ABLATION_PROTOCOL_LOCK.json`, `ABLATION_RESULT.json` | Predeclared protocol lock and results |
+| `REPORT.md` | Result notes |
+
+These records support the 1.094 / 0.727 / 0.708 ×10⁻³ rad/m values with 88%/92%/92% success fractions, the "22 accepted, 15 improved, 7 worse" count, and the three-stage timings 0.0203 / 0.1141 / 2.4417 s.
+
+### 4. `data/predictor_holdout/` (Supplementary Sec. S18)
+
+| Sub-path | Contents |
+|---|---|
+| `results/frame_metrics.csv` | Per-frame metrics of the independent holdout (171 KB) |
+| `results/trial_summary.csv`, `downstream_*`, `paired_statistics.csv` | Per-trial and paired statistics |
+| `protocol/CSMT_V2_PARAMETER_LOCK.json`, `HOLDOUT_RESULT.json` | Parameter lock and results |
+| `REPORT.md` | Result notes |
+
+The holdout uses a different random-seed namespace from the main benchmark and supports the open-loop and closed-loop sensitivity comparison over β ∈ {0, 0.25, 0.5, 0.75, 1.0} (the source of the "2.3% variation" statement).
+
+### 5. `data/ocms_manifold_geometry/` (Supplementary Sec. S2.6)
+
+| File | Contents |
+|---|---|
+| `s29_manifold_geometry_frames.csv` | Per-frame geometry diagnostics of the one-parameter closure |
+| `s29_manifold_geometry_summary.json` | Summary statistics |
+| `s29b_bottom_softness.csv`, `s29b_summary.json` | Bottom-softness sensitivity |
+
+## Reproducing figures and tables
+
+| Object | Command | Data read |
+|---|---|---|
+| Fig. 1 (pipeline) | `python figures/fig1_flow.py` | none |
 | Fig. 2 (accuracy) | `python figures/fig2_accuracy.py` | `data/synthetic/*.csv` |
-| Fig. 3 (field) | `python figures/fig3_swellex.py` | `data/swellex/csmt_fixed_ssp_i9606.csv`, `…/Table_final_experimental_summary.csv` |
+| Fig. 3 (field data) | `python figures/fig3_swellex.py` | `data/swellex/csmt_fixed_ssp_i9606.csv`, `…/Table_final_experimental_summary.csv` |
+| Table I | — | `data/baselines/estimator_comparison.csv` |
+| Sec. S10 (SAVEX15) | data included; the driver needs the original project layout (Tier C of `docs/REPRODUCE.md`) | `data/savex15/arrays/*.npz` |
+| Sec. S20 (VLA geometry) | data included; the driver needs the original project layout (same tier) | `data/vla_geometry/csv/*.csv` |
 
-Nearly every number printed in the article is either read directly from a CSV in `data/` or
-computed from one by a script in `figures/` or `experiments/`. The one exception is the
-K=3/5/8 scan in Sec. S2, whose per-trial records are not exported separately (noted in S2).
-No timing value is hard-coded: the two medians used in Fig. 3(b) are read from the
-experimental summary table.
+Almost every number in the paper either comes directly from a CSV under `data/` or is computed from one by a script in `figures/` or `experiments/`. The single exception is the K=3/5/8 scan of Sec. S2, whose per-trial records were not exported separately (noted in S2). No timing value is hard-coded: the two medians used in Fig. 3(b) are read from the experiment summary table.
 
-The scripts under `data/savex15/scripts/` and `data/vla_geometry/scripts/` are retained for
-provenance and expect the original project layout; see `docs/REPRODUCE.md` (Tier C) before
-attempting a cold-start rerun. The archived NPZ/CSV are the authoritative outputs.
+## Not included
 
-## What is not included
-
-| Item | Reason | Where to get it |
+| Item | Reason | Where to obtain |
 |---|---|---|
 | SWellEx-96 raw waveforms | 567 MB, publicly archived | <https://swellex96.ucsd.edu/s5.htm> |
-| SAVEX15 environmental data | distributed by SEANOE | doi:10.17882/72285 |
-| SAVEX15 forward-field KRAKEN output (`.prt`/`.mod`/`.env`) | ~42 MB of intermediates, regenerable by `NN_FRI_SAVEX15_Physics_Repair_v1.py` | this repository ships the resulting `.npz` arrays |
-| KRAKEN executables | third-party, not redistributable | obtain from the authors of the model |
-| Full three-CTD estimate arrays | restricted by the source archive | on request from the corresponding author |
+| SAVEX15 raw temperature and salinity | distributed by SEANOE | doi:10.17882/72285 |
+| KRAKEN raw output of the SAVEX15 forward fields (`.prt`/`.mod`/`.env`) | ~42 MB of intermediate files, rebuildable with the StageA script | this archive provides the `.npz` results |
+| KRAKEN executable | third-party software, not redistributed | obtain from the model authors |
 
-## v1.1.3 -> v1.1.4
+The pressure-field arrays are included (`data/arrays/Y_frames.npz`, 456 KB), but `experiments/rerun_cadence_from_arrays.py` still requires the original project directory `SWellEx96_S5_CSMT/` (KRAKEN references and `.env` inputs) and the `dynamic_local_basis_coupling_suite` module, so it cannot run from an unpacked archive and is classified as Tier C. `data/arrays/Y_frames.npz` is sufficient for a reader to write their own rerun entry point.
 
-- `experiments/s26_ocms_comparison/`: the OCMS initializer comparison of Supplementary Sec. S26, absent from v1.1.3, is archived with the corrected driver that calls `dynamic_topn_refined` instead of the ModeFRINET multistage estimator.
-- `src/mode_fri/direct_benchmark.py` and `configs/canonical_dynamic_benchmark_v1.json`: recovered from the full experiment backup; `unified_benchmark.py` and `canonical_dynamic_benchmark_v1.py` previously imported files the archive did not contain.
-- `requirements.txt`: declares `cvxpy==1.9.3` and `clarabel==0.11.1`.
-- `MANIFEST.sha256` rebuilt.
+## Licensing
 
-## v1.1.2 -> v1.1.3
-
-- `figures/fig1_flow.py`: the dashed guide in the flow diagram is broken at its label.
-- `figures/fig3_swellex.py`: panel (a) gains grey bands for the 7 retained frames; panel (b) is labelled with a log-scale axis; the caption follows.
-- The cost statement in `CITATION.cff` and both `README` files now uses the observation-window ratio, matching the manuscript (a local update is 0.36% of the 30 s window; a global re-estimate is 342%).
-
-## v1.1.1 -> v1.1.2
-
-- The corresponding-author e-mail (`wangpengyu@ouc.edu.cn`) is kept, consistent with the Zenodo record page and the article's first page.
-- Front-matter reproduction claim narrowed to a two-tier statement (recomputation from derived data vs. experiment-level rerun), consistent with Tier B/C in `docs/REPRODUCE.md`.
-- `CITATION.cff` message now asks readers to cite this archived release, noting that the journal article will be citable once published; the software DOI is no longer presented as an article DOI.
-
-## v1.1.0 -> v1.1.1
-
-- All text files normalized to **LF**; added `.gitattributes` (`* text=auto eol=lf`).
-- `MANIFEST.sha256` recomputed on LF, so the local tree, the GitHub archive and the
-  Zenodo record now agree. The v1.1.0 manifest was computed on CRLF working-tree files
-  and therefore reported 136 spurious mismatches against the LF release archive.
-- `figures/make_all.sh` writes to `figures/out_repro/` and no longer overwrites the
-  archived figures that the manifest protects.
-- Tier A scope in `docs/REPRODUCE.md` narrowed; the K=3/5/8 sweep is noted as having no
-  per-trial export.
-
-## Data license and third-party terms
-
-Code is released under the MIT license. Derived tables and figures are released under
-CC BY 4.0. The original SWellEx-96 and SAVEX15 data remain under their own terms; nothing
-in `data/` redistributes raw waveforms.
+Code is MIT-licensed; derived tables and figures are CC BY 4.0. The original SWellEx-96 and SAVEX15 data remain under their own terms; `data/` contains no raw waveforms or raw hydrographic observations. Scope and third-party attribution are in `DATA_LICENSE.md`.
 
 ## Integrity check
 
-`MANIFEST.sha256` lists the SHA-256 of every tracked file. Regenerate or verify with:
+`MANIFEST.sha256` lists the SHA-256 of every version-controlled file. To verify or regenerate:
 
 ```bash
 find . -type f -not -path './.git/*' -not -name 'MANIFEST.sha256' \
@@ -128,7 +138,7 @@ sha256sum -c MANIFEST.sha256
 
 ## Citation
 
-See `CITATION.cff`. Please cite the article and the archived release.
+See `CITATION.cff`. Cite both the paper and the archived release.
 
 ## Contact
 
