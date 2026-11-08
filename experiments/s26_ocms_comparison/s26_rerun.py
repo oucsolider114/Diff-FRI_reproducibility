@@ -167,7 +167,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--end", type=int, default=20)
-    ap.add_argument("--out", default=r"E:\Users\lenovo\_dsh_work\s26_rerun.csv")
+    ap.add_argument("--out", default=str(Path(__file__).resolve().parent / "s26_rerun.csv"))
     a = ap.parse_args()
 
     BASES = build_frame_bases()

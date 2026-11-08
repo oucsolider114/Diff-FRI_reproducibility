@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Greedy single-candidate initialization + SMT tracking, same 20 realizations/SSP as nonorth_init."""
-import sys, csv, time
-sys.path.insert(0, r"E:\Users\lenovo\_dsh_work")
+import os, sys, csv, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import s26_rerun as S
 

@@ -6,8 +6,8 @@ KRAKEN truth, 1-m depth grid). Compares:
   forced refined   -> estimate_from_coarse (bypasses the acceptance test)
   gated refined    -> k_ref from dynamic_topn_refined (whatever the gate returned)
 """
-import sys, csv, time
-sys.path.insert(0, r"E:\Users\lenovo\_dsh_work")
+import os, sys, csv, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import s26_rerun as S
 from mode_fri import direct_estimator
@@ -56,7 +56,7 @@ for r in range(20):
     print("[r%d] init coarse=%.3e refined=%.3e forced=%.3e | track coarse=%.3e refined=%.3e forced=%.3e | gate=%d"
           % (r, e(k_coarse), e(k_ref), e(k_for), tr_c, tr_r, tr_f, int(acc)), flush=True)
 
-p = r"E:\Users\lenovo\_dsh_work\s27_precheck_kraken.csv"
+p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "s27_precheck_kraken.csv")
 with open(p, "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
 print("wrote", p, flush=True)

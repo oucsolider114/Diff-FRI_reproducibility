@@ -141,7 +141,7 @@ def main():
              err_chart_median=float(np.median(ec)), err_free_median=float(np.median(ef)),
              noise_energy_fraction=1.0 / (10 ** (SNR_DB / 10.0)))
     print(json.dumps(s, indent=2))
-    out = Path(os.environ.get("S29_OUT", r"E:\Users\lenovo\_dsh_work\s29_ocms_manifold_geometry"))
+    out = Path(os.environ.get("S29_OUT", str(Path(__file__).resolve().parent / "s29_ocms_manifold_geometry")))
     out.mkdir(parents=True, exist_ok=True)
     with (out / "s29d_pressure_delta.csv").open("w", newline="", encoding="utf-8-sig") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)

@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 BASE = Path(__file__).resolve().parents[1]
 CSV = BASE / "data/vla_geometry/csv/trial_summary.csv"
-OUT = Path(r"E:/Users/lenovo/_dsh_work/figcheck/Supp_FigS5_geometry_tracking_rmse.pdf")
+OUT = BASE / "figures" / "out_repro" / "Supp_FigS5_geometry_tracking_rmse.pdf"
 OUT.parent.mkdir(parents=True, exist_ok=True)
 
 rows = list(csv.DictReader(open(CSV, encoding="utf-8-sig")))

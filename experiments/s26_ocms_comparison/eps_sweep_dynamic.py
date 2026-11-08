@@ -1,6 +1,6 @@
 """OCMS tolerance sensitivity on the evolving-SSP first frame."""
-import sys, json
-sys.path.insert(0, r"E:\Users\lenovo\_dsh_work")
+import os, sys, json
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import s26_rerun as S
 DYN = S.DYN

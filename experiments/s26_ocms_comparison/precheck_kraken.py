@@ -6,7 +6,7 @@ coefficients/noise generators, 10 dB, 20 snapshots, 21 frames, and the same
 OCMS / Diff-FRI initializers + SMT tracker as precheck_dynamic.py.
 """
 import sys, csv, json, time, os
-sys.path.insert(0, r"E:\Users\lenovo\_dsh_work")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import s26_rerun as S
 
@@ -75,7 +75,7 @@ for r in range(20):
     print("[r%d] init ocms=%.4e fri=%.4e | track ocms=%.4e fri=%.4e | gate=%d | %.1f+%.1fs"
           % (r, ic_o, ic_f, tr_o, tr_f, int(acc), dt_fri, dt_ocms), flush=True)
 
-p = r"E:\Users\lenovo\_dsh_work\s26_precheck_kraken.csv"
+p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "s26_precheck_kraken.csv")
 with open(p, "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=list(rows26[0])); w.writeheader(); w.writerows(rows26)
 print("wrote", p, flush=True)

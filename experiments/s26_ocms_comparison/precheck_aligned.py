@@ -4,7 +4,7 @@ Does NOT overwrite the archived uniform-water-column results; writes only
 *_precheck_dynamic.csv. Answers six questions from the review.
 """
 import sys, csv, json, time, os
-sys.path.insert(0, r"E:\Users\lenovo\_dsh_work")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import s26_rerun as S
 
@@ -81,7 +81,7 @@ for r in range(20):
     print(f"[r{r}] init ocms={ic_o:.4e} fri={ic_f:.4e} forced={ic_for:.4e} | track ocms={tr_o:.4e} fri={tr_f:.4e} forced={tr_for:.4e} | gate={int(acc)} | {dt_fri:.1f}+{dt_ocms:.1f}s", flush=True)
 
 for name, rows in [("s26_precheck_aligned.csv", rows26), ("s27_precheck_aligned.csv", rows27)]:
-    p = os.path.join(r"E:\Users\lenovo\_dsh_work", name)
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
     with open(p, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
     print("wrote", p, flush=True)

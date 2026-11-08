@@ -24,7 +24,7 @@ from __future__ import annotations
 import csv
 import json
 import math
-import sys
+import os, sys
 from pathlib import Path
 
 import numpy as np
@@ -208,7 +208,7 @@ def main() -> None:
                     alpha_tk.append(float(np.linalg.norm(orth) / max(np.linalg.norm(d), 1e-30)))
 
     import os
-    outdir = Path(os.environ.get("S29_OUT", r"E:\Users\lenovo\_dsh_work\s29_ocms_manifold_geometry"))
+    outdir = Path(os.environ.get("S29_OUT", str(Path(__file__).resolve().parent / "s29_ocms_manifold_geometry")))
     outdir.mkdir(parents=True, exist_ok=True)
     names: list[str] = []
     for r in out_rows:

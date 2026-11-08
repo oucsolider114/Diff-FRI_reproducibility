@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Compare Diff-FRI vs a plain multi-start grid search + local refinement (Nelder-Mead),
 under the same non-orthogonal water-column trial family, on downstream SMT tracking."""
-import sys, csv, time
-sys.path.insert(0, r"E:\Users\lenovo\_dsh_work")
+import os, sys, csv, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import s26_rerun as S
 from scipy.optimize import minimize

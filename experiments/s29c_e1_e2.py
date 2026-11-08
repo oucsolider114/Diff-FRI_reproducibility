@@ -150,7 +150,7 @@ if __name__ == "__main__":
     print("E1", json.dumps(s1, indent=2))
     s2, rows2 = e2()
     print("E2", json.dumps(s2, indent=2))
-    out = Path(os.environ.get("S29_OUT", r"E:\Users\lenovo\_dsh_work\s29_ocms_manifold_geometry"))
+    out = Path(os.environ.get("S29_OUT", str(Path(__file__).resolve().parent / "s29_ocms_manifold_geometry")))
     out.mkdir(parents=True, exist_ok=True)
     with (out / "s29c_e1_e2.json").open("w", encoding="utf-8") as fh:
         json.dump(dict(E1=s1, E2=s2), fh, indent=2)

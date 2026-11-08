@@ -4,8 +4,8 @@ In s26_rerun the data-only gate rejected the refinement in all 20 realizations, 
 returned estimate equals the coarse solution. Here the refinement is taken directly from
 direct_estimator.estimate_from_coarse, bypassing the gate, so the two arms actually differ.
 """
-import sys, csv, time
-sys.path.insert(0, r"E:\Users\lenovo\_dsh_work")
+import os, sys, csv, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import s26_rerun as S
 from mode_fri import direct_estimator
@@ -39,7 +39,7 @@ for r in range(20):
                      seconds_coarse=t_coarse, seconds_refined=t_ref))
     print(f"[r{r}] init coarse={ic:.4e} refined={ir:.4e} | track coarse={trc:.4e} refined={trr:.4e} | {t_coarse:.1f}+{t_ref:.1f}s", flush=True)
 
-out = r"E:\Users\lenovo\_dsh_work\refine_ablation_forced.csv"
+out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "refine_ablation_forced.csv")
 with open(out, "w", newline="", encoding="utf-8-sig") as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
 print("wrote", out, flush=True)
